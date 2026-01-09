@@ -1,0 +1,27 @@
+1. ### What is scaling Policy?
+
+   It is a set of instruction used by AWS Auto Scaling to automatically adjust the capacity of your application's resourcesin response to changing demand.\
+   **Four types of scaling Policies**
+     #### I. Target Tracking Scaling
+     - This is recommended and simplest method. You select a metric and target value. AWS automatically add or removes capacity as needed to keep the metric as close to the target value as possible.\
+     - Use case - ideal for steady, predicatble performance needs where you want to maintain a specific utilization level.
+     #### II. Step Scaling
+     - This policy used cloudwatch alarms to trigger scaling adjustments based on the magnitude of the alram breach. you define a 'step' for how much capacity to add or remove depending on how far the metric vaule is from the threshold.
+     #### III. Simple Scaling
+     - It is similar to step scaling but responds to a single alarm breach with a single scaling action. A key difference is that after a simple scaling activity is initated, the policy waits for a 'cooldown' period to end before responding to any further alarms.
+     #### IV. Predctive scaling
+     - This uses machine learning to analyze historical traffic patterns and forecast future capacity need up to 48 hours in advance. It proactively schedules scaling actions to ensure capacity us available before demand increases, which helps to avoid performance issues.
+   
+
+   **[⬆ Back to Top](#table-of-contents)**
+2. ### What are the types of endpoints in AWs?
+   AWS endpoints vary by service, but broadly fall into Regional, Global and VPC endpoints. VPC endpoints further split into Interface Endpoints(PrivateLink) for most services and Gateway Endpoints for S3/DynamoDB.
+   - Regional Endpoints: 
+     Standard endpoints located in specific AWS Regions(s3.us-east-1.amazon.com) for most services.
+   - Global Endpoints:
+     Endpoints that aren't tied to a specific region, like IAM, route53, and cloudfront, for unified management of content delivery.
+   - Interface Endpoints(PrivateLink):
+     Create an Elastic Network interface (ENI) with a private IP in your subnet, acting as an entry point for many srvices(lambda, KMS, API gateway).
+   - Gateway Endpoints:
+     A route table target for specific services like S3 and DynamoDB, routing traffic directly without ENI.
+   
