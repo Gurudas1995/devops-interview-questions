@@ -1,4 +1,4 @@
-# Git & GitHub Interview Questions and Answers
+# Linux Interview Questions and Answers
 
 ---
 ### Table of Contents
@@ -16,5 +16,11 @@ Hide/Show table of contents
 
 
 
-1. ### List All git Commands.
-Here are the list of common git commands which cover most important and frequently used operations.
+1. ### How do you check open ports in Linux?
+Using `netstat -tuln` or `ss -tuln`.
+
+### How do you check the default gateway in linux?
+Using `ip route show` or `route -n`.
+
+
+
