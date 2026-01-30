@@ -24,4 +24,17 @@
      Create an Elastic Network interface (ENI) with a private IP in your subnet, acting as an entry point for many srvices(lambda, KMS, API gateway).
    - Gateway Endpoints:
      A route table target for specific services like S3 and DynamoDB, routing traffic directly without ENI.
+
+3. ###  What is RTO and why is it important?
+   Recovery Time Objective (RTO) is the target time for resuming operations after an incident (e.g. 2 hours). It is crucial becuase it directly impacts business revenue, reputation, and SLA compliance.
+
+4. ### What is RPO and what does it measure?
+   Recovery Point Objective (RPO) is the maximum allowable data loss measured in time (e.g. last 15 minutes of data).It determines how frequently backups or snapshots must be taken.
+
+5. ### what is the difference between RTO and RPO and what are commenly used metrics?
+RTO relates to downtime (time to restore systems), while RPO relates to data loss (amount of data that needs re-entry).
+   - RTO : Seconds (hot site) to days (Tape restore)
+   - RPO : Zero (synchronus data replication) to 24 hours (daily backup)
+
+
    
