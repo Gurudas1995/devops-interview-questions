@@ -80,8 +80,11 @@ It has modifed version of OSI model. It has 4 layers
 17. ### What is an IP class?
 It is designed to organizes network sizes by categorizing addresses into five groups (A, B, C, D, E) based on thier first octet.
  - Class A: Designed for large networks (e.g., government, ISP). Range: 1.0.0.0 – 127.255.255.255 (/8 mask)
+   - Private IP range : 10.0.0.0 - 10.255.255.255
  - Class B: Designed for medium-sized networks (e.g., universities, large corporations). Range: 128.0.0.0 – 191.255.255.255 (/16 mask)
+   - Private IP range : 172.16.0.0 - 172.31.255.255
  - Class C: Designed for small businesses or home networks. Range: 192.0.0.0 – 223.255.255.255 (/24 mask)
+   - Privste IP range: 192.168.0.0 - 192.168.255.255
  - Class D: Reserved for multicast groups (e.g., streaming). Range: 224.0.0.0 – 239.255.255.255
  - Class E: Reserved for experimental, research, or future use. Range: 240.0.0.0 – 255.255.255.255
 
@@ -99,6 +102,23 @@ Virtual Private Network (VPN) provides secure remote access over the internet
 
 22. ### What is port number?
 A port number identifies a specific service or process on a device.
+
+| Protocol/service | Port No | Why it's used |
+| --- | --------- | ------------- |
+| SSH  | 22 | Used to connect securely to Linux servers |
+| HTTP | 80 | Normal Website |
+| HTTPS | 443 | Secure Website traffice (SSL/TLS) |
+| DNS | 53 | Domain Name Resolution |
+| DHCP | 67,68 | Automatically gives IP to devices |
+| FTP | 21 | File Transfer |
+| SMTP | 25 | Sending emails |
+| IMAP/POP3 | 143, 110| Receiving emails (IMAP keeps copy, POP downloads) |
+| RDP | 3389 | Remote Desktop (Windows servres) |
+| MySQL DB | 3306 | Database |
+| PostgreSQL | 5432 | Database |
+| Jenkins | 8080 | CI/CD pipelines |
+| Prometheus | 9090 | Metrics monitoring tool |
+| Grafana | 3000 | Dashboards and monitoring | 
 
 23. ### What does the ifconfig or ip addr command do?
 It displays or configures network interface details.
@@ -118,3 +138,22 @@ It provides detailed DNS information for troubleshooting.
 28. ### What is ARP?
 Address resoultion protocol (ARP) maps IP addresses to MAC addresses.
 
+27. ### What is difference between unicast, broadcast and multicast?
+*Unicast*: one to one\
+*Broadcast*: one to all\
+*Multicast*: one to Many.
+
+28. ### what is public IP address?
+It's used to communicate on the internet and is globally unique.
+
+29. ### What is subnet mask is used for?
+It separates the network and host parts of an IP address
+
+30. ### What is network address?
+The first IP in a subnet (represnt subnet itself)
+
+31. ### What is broadcast address?
+The last IP in a subnet (used to send messages to all hosts)
+
+32. ### Whar is CIDR? why it was introduced?
+Classless Inter-Domain Routing (CIDR) allows flexible subnetting using "/" notation. Introduced to avoid waste of IPs caused by fixed class-based addressing. 
