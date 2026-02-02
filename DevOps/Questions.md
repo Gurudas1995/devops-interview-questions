@@ -50,4 +50,9 @@ Hide/Show table of contents
    - Automate deployment
 
 **[⬆ Back to Top](#table-of-contents)**
-     
+
+4. ### What is landing zone?
+   A cloud landing zone is a pre-configured, secure and scalable multi-account environment designed as the foundation for running workloads in providers like AWS, Azure or GCP. It includes built-in identity management, network configuration, security and governance to allow organization to deploy applications quickly and safely.
+
+5. ### what is sesmic zone?
+   A seismic xone in the context of cloud computing referes to a geographic area where data centers are located, classified by their susceptibilty to earthquake risks, ranging from low to high. Data centers in these zones muct implement specialized fondations, to ensure service continuity, high availability and physical protection of infrastructyre during seismic events.
