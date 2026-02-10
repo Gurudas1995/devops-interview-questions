@@ -56,3 +56,18 @@ Hide/Show table of contents
 
 5. ### what is sesmic zone?
    A seismic xone in the context of cloud computing referes to a geographic area where data centers are located, classified by their susceptibilty to earthquake risks, ranging from low to high. Data centers in these zones muct implement specialized fondations, to ensure service continuity, high availability and physical protection of infrastructyre during seismic events.
+
+6. ### What is serverless Computing and how does it differ from traditional cloud computing?
+   Serverless computing refers to a cloud computing execution model in which the cloud provider manages the infrastructure and automatically allocates resources as needed. Serverless computing eliminates the need for server management, allowing developers to focus on writing and deploying code.\ AWS Lambda, Azure Functions which allows you to run code without provisioning or managing servers. we can write functions in various language and service automatically scales and manages infrastructure required to run your code based on incoming requests.
+
+7. ### How would you choose between serverless and traditional (VM) for given application?
+   This choice is depends on specific requirements of applications. Serverless is beneficial for applications with variable workloads and intermittent usage patterns. Specially suitable for event-driven architecture and microservices.\Traditional VMs provide more control and flexibility, making them better choice for steady workloads.
+
+8. ### How would you implement security best practices in serverless environment?
+ - By ensuring secure configurations, managing access controls and using encryptions.
+ - Closely manage permissions and roles for serverless functions to ensure that only authorized users have access.
+ - Use environment Specific secrets or key managment services to protect sensetive information.
+ - Regularly update the serverless platform and its underlying dependencies to address any security vulnerabilites.
+
+
+   
