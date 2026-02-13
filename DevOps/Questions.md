@@ -69,5 +69,15 @@ Hide/Show table of contents
  - Use environment Specific secrets or key managment services to protect sensetive information.
  - Regularly update the serverless platform and its underlying dependencies to address any security vulnerabilites.
 
+9. ### What are main advantages and disadvantages of using serverless computing?
+- *advantages*
+   - Automatic scaling
+   - Pay-per-use Pricing
+   - Reduced operational overhead
+- *Disadvnatgaes*
+   - Cold start latency
+   - limited execution time
+
+10. ### 
 
    
