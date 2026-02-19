@@ -78,6 +78,11 @@ Hide/Show table of contents
    - Cold start latency
    - limited execution time
 
-10. ### 
+10. ### What methods do you use to check for code vulnerabilites?
+    Methods for checking code vulnerabilities include automated scanning (SAST, DAST, IAST), Software Composition Analysis (SCA) to check dependancies, and manual code reviews.
+- Static Application Security Testing (SAST): Analyzes source code, binaries without executing the application to find vulnerabilities early in the development lifecycle. Tools like Snyk Code are commonly used.
+- Dynamic Application Security Testing (DAST): Tests running applications from the outside by simulating attacks (e.g. inputtng malicious data) to detect runtime issues like SQL injection or XSS.
+- Interactive Application Security Testing (IAST): Combines SAST and DAST, monitoring application behaviour from within during testing to identify vulnerabilities.
+- Software Composition Analysis (SCA): Scans open source dependancies and liabraries to identify known vulnerabilites (CVEs) and outdated packages.
 
-   
+11. ### 
