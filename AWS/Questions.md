@@ -44,13 +44,13 @@ RTO relates to downtime (time to restore systems), while RPO relates to data los
   - Attach a policy to this role that grants the necessary S3 permissions (GetObject, ListBucket) on the target bucket.
 - Configure the S3 Bucket Policy in Account A:
   - Update the bucket policy in account A to explicitly grant access to the role created above or directly to the IAM role attached to the EC2 instance in Account B.
-    ```
-    {
-  "Effect": "Allow",
-  "Principal": { "AWS": "arn:aws:iam::AccountB-ID:role/EC2Role" },
-  "Action": ["s3:GetObject", "s3:ListBucket"],
-  "Resource": ["arn:aws:s3:::bucket-a", "arn:aws:s3:::bucket-a/*"]
-  }
+  ```
+       {
+        "Effect": "Allow",
+        "Principal": { "AWS": "arn:aws:iam::AccountB-ID:role/EC2Role" },
+        "Action": ["s3:GetObject", "s3:ListBucket"],
+        "Resource": ["arn:aws:s3:::bucket-a", "arn:aws:s3:::bucket-a/*"]
+        }
   ```
   - Ensure the EC2 instance is running with an IAM instance profile that has permission to perform the sts:AssumeRole action on the cross-account role created in step 1.
 
