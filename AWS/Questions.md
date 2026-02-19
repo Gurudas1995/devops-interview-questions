@@ -36,5 +36,25 @@ RTO relates to downtime (time to restore systems), while RPO relates to data los
    - RTO : Seconds (hot site) to days (Tape restore)
    - RPO : Zero (synchronus data replication) to 24 hours (daily backup)
 
+6. ### How would you access data in an S3 bucket from account A, when your application is running on an EC2 instance in Account B?
+   Accessing an S3 bucket in Account A from an EC2 instace in Account B requires a cross account IAM role in Account A and a bucket policy that trusts account B. The EC2 instance in account B assumes this role- to obtain temporary credentials to access the bucket, ensuring secure, authorized access. Below are the steps.
+- Create a Cross account IAM role in Account A:
+  - Create an IAM role (e.g. S3AccessRole) in Account A.
+  - Set the trust relationship to allow Account B's IAM entity or specific user/role to assume this role
+  - Attach a policy to this role that grants the necessary S3 permissions (GetObject, ListBucket) on the target bucket.
+- Configure the S3 Bucket Policy in Account A:
+  - Update the bucket policy in account A to explicitly grant access to the role created above or directly to the IAM role attached to the EC2 instance in Account B.
+    ```
+    {
+  "Effect": "Allow",
+  "Principal": { "AWS": "arn:aws:iam::AccountB-ID:role/EC2Role" },
+  "Action": ["s3:GetObject", "s3:ListBucket"],
+  "Resource": ["arn:aws:s3:::bucket-a", "arn:aws:s3:::bucket-a/*"]
+  }
+  ```
+  - Ensure the EC2 instance is running with an IAM instance profile that has permission to perform the sts:AssumeRole action on the cross-account role created in step 1.
+
+7. ###
+
 
    
