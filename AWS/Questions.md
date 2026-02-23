@@ -54,7 +54,64 @@ RTO relates to downtime (time to restore systems), while RPO relates to data los
   ```
   - Ensure the EC2 instance is running with an IAM instance profile that has permission to perform the sts:AssumeRole action on the cross-account role created in step 1.
 
-7. ###
+7. ### What is the AWS Shared Responsibility Model?
+   AWS manages security of the cloud (infrastructure, hardware, networking). The customer is responsible for security in the cloud (OS patching, IAM policies, network configuration, data encryption)
+
+8. ### How do you manage and monitor AWS infrastructure to ensure high availability and performance?
+ - Using AWS Cloudwatch to monitor resource utilization, system-wide performance metrics, transaction volumes, and latency, setting alarms based on specific thresholds.
+ - Implmenting AWS Auto Scaling to maintain application availabilty and balance capacity.
+ - Utilizing AWS Trusted Advisor to optimize AWS environment, reduce costs, boost performance and increase security by inspecting your AWS environment.
+ - Employing AWS CloudTrail to enable governance, compliance, operational auditing and risk auditiong of your AWS account.
+
+9. ### What is VPC and why is it used?
+    A Virtual Private Cloud (VPC) is an isolated section of the AWS cloud where you launch resources. It Allows for custom IP address ranges, subnets, route tables, and network gateways to ensure security and network isolation. Some security benifites are:
+ - Network segmentation.
+ - Control over inbound and outbound network traffic via network access control list (NACL) and security groups.
+ - VPN connections for secure communication with your corporate network.
+ - Dedicated, Hardware-based VPN appliance for enhanced security.
+ - The ability to use AWS IAM to set up and enforce policies for VPC-related resources.
+   
+11. ### Explain difference between Public and private subnets
+    A public subnet has a route to an internet Gateway (IGW) for direct internet access. A private subnet does not have a direct route to the internet; it typically uses a NAT instance or NAT Gateway to access the internet securely.
+
+12. ### How can you automate OS patching on EC2 instances?
+    Using AWS systems manager - Patch Manager, which allows schedulling maintenance windows to apply patches to both Windows and Linux instances.
+
+13. ### What is the best way to handle DDoS attacks?
+    Utilize AWS Shield (standard or Advanced) for DDoS protection, AWS WAF (Web App Firewall) to filter malicious traffic and Amazon CloudFront for content delivery.
+
+14. ### How do you ensure high availability for a web application?
+    Deploy instances across multiple Availability Zones using an Auto Scaling Group behind an Application Load Balancer (ALB).
+
+15. ### What are IAM roles and how are they used?
+    IAM roles are identity structures with permissions that can be assumed by AWS services like EC2 or users, allowing them to perform actions without hardcoding security credentials.
+
+16. ### How do you optimize cost for AWS infrastructure?
+    Implement AWS Cost Explorer and Budgets. Use Reserved Instances or Savings Plans for steady state, spot Instances for batch jobs, and delete unused resources like unattached EBS Volumes, old snapshots.
+
+17. ### What is the difference between EBS, EFS and S3?
+ - EBS (Elastic Block Store): Block storage for a single EC2 instance (high performance).
+ - EFS (Elastic File System): Shared file system for multiple EC2 instances.
+ - S3 (Simple Storage Service): Object storage for flat files, Highly durable, internet-accessible.
+
+17. ### How do you securely access an EC2 instance in private subnet?
+    Use AWS Systems Manager Session Manager, which allows shell access without opening SSH port 22 or using a Bastion host.
+
+18. ### What is AWS CloudFormation?
+    A service that models and sets up AWS resources based on JSON or YAML temlates, enabling infrastrucutre as Code for consistent, automated deployments.
+
+19. ### How do you handle a failing EC2 Instance?
+    Check Cloudwatch status checks (system or instance checks). If it's a system failure, I stop/start the instance to move it to healthy hardware. For instance failures, I analyze logs and potentially replace the instance via auto scaling.
+
+20. ### How do you ensure data inegrity and security in AWS S3?
+ - Using **S3 Versioning** to keep multiple variants of an object.
+ - Implementing **SSL/TLS** to encrypt data in transit to S3.
+ - Empolying **S3 Server-Side Encryption (SSE)** for data at rest.
+ - Leveraging **S3 Bucket Policices and IAM Policies** to manage access to S3 bucktes.
+ - Utilizing **AWS KMS** to manage encryption keys used by SSE.
+ - Implementing **MFA delete** to provide an additional layer of security by requiring MFA to delete S3 objects.
+   
+
 
 
    
