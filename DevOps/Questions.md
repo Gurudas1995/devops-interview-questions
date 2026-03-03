@@ -85,4 +85,11 @@ Hide/Show table of contents
 - Interactive Application Security Testing (IAST): Combines SAST and DAST, monitoring application behaviour from within during testing to identify vulnerabilities.
 - Software Composition Analysis (SCA): Scans open source dependancies and liabraries to identify known vulnerabilites (CVEs) and outdated packages.
 
-11. ### 
+11. ### How does CI/CD pipeline works end-to-end in context of Azure DevOps pipeline?
+    In Azure DevOps, the pipeline is often defined in a YAML file stored in the repository (Pipeline-as-code) or configured via a classic editor in the UI.
+ - Source - Code is committed to a repositroy (azure Repos, GitHub).
+ - Trigger - Azure pipelines automatically detects the change and starts the defined pipline.
+ - CI (Build/test) - The pipeline runs jobson hosted or private agents to compile the code, run tests and create artifacts. It can integrate with various languages and platforms (node.js, Python, Java).
+ - CD (Deploy) - The resulting artifacts are stored (e.g. in ACR for docker images) and then deployed to target Azure environments like Azure App Service, kubernetes using release pipelines.
+ - Approvals: Optional pre-deployment approval gates can be set to require human validation before deploying to production.
+   
