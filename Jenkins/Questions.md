@@ -75,10 +75,12 @@ Hide/Show table of contents
             steps { sh './run-int-tests.sh' }
         }
     }
-}
    ```
-
-
 6. ### How does Jenkins CI/CD pipeline works end-to-end?
-
+   Jenkins is an open-source automation server that orchestrates pipelines using Groovy-based `jenkinsfile` stored in the source control repository or configured through the Jnekins UI.
+ - **Source**: A developer pushes code to a version control system like Github. A webhook notifies the Jenkins server of the change.
+ - **Trigger**: Jenkins Pulls the latest code from the repository into its workspace.
+ - **CI(build/Test)**: The `Jenkinsfile` defines stages for building the application using tools like Maven or Gradle and running automated tests with frameworks like Junit or Selenium.
+ - **CD (Deploy)**: The pipeline pushes the built artifact (e.g. Docker image) to an artifact repository (DockerHub or private registry) and then deployes it to target environment(e.g. Kubernetes cluster, AWS EC2 instance).
+ - **Plugins**: Jenkins extensibility through numerous plugins allows it to integrate with virtually any testing or deployment tool and cloud platform.
      
