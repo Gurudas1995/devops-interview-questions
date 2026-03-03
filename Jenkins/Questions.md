@@ -16,7 +16,7 @@ Hide/Show table of contents
 
 
 
-1. ### How do you design a scalable Kenkins architecture for 100+ microservices?
+1. ### How do you design a scalable Jenkins architecture for 100+ microservices?
  - #### High-Level Architecture (What)
    I would implement a Jenkins on Kubernetes architecture using a Master-Agent model. the core philosophy is to treat the master as a lightweight coordinator and ephemeral containerized agents for the actual build workload.
     - Jenkins Controller (Master): Deployed on Kubernetes, utilizing a persistent volume like EBS for `/var/jenkins_home`.
@@ -76,7 +76,9 @@ Hide/Show table of contents
         }
     }
 }
-  ```
+   ```
 
-6. ###
+
+6. ### How does Jenkins CI/CD pipeline works end-to-end?
+
      
