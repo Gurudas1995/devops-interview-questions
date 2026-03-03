@@ -110,6 +110,15 @@ RTO relates to downtime (time to restore systems), while RPO relates to data los
  - Leveraging **S3 Bucket Policices and IAM Policies** to manage access to S3 bucktes.
  - Utilizing **AWS KMS** to manage encryption keys used by SSE.
  - Implementing **MFA delete** to provide an additional layer of security by requiring MFA to delete S3 objects.
+
+21. ### What is SCP?
+   AWS Servce Control Policies (SCPs) are JSON based policies used in AWS Organizations to set maximum permission guardrails across multiple AWS accounts. They act as central, organization-wide restriction layer, defining which IAM actions and services are allowed or denied, overriding individual IAM policies. Common use cases are - 
+ - Restricting Regions: Blocking services in specific regions to comply with data residency requirements.
+ - Preventing Service Usage: Disabling services like S3, Lambda or IAM in specific environment.
+ - Security Guardrails: Preventing the deletion of CLoudtrail logs, diabling GuardDuty, or blocking root user usage.
+ - Cost Management - Restrictring the ability to launch expensive instance types.
+
+22. ###
    
 
 
