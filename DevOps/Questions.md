@@ -92,4 +92,36 @@ Hide/Show table of contents
  - CI (Build/test) - The pipeline runs jobson hosted or private agents to compile the code, run tests and create artifacts. It can integrate with various languages and platforms (node.js, Python, Java).
  - CD (Deploy) - The resulting artifacts are stored (e.g. in ACR for docker images) and then deployed to target Azure environments like Azure App Service, kubernetes using release pipelines.
  - Approvals: Optional pre-deployment approval gates can be set to require human validation before deploying to production.
-   
+
+12. ### How do you design a production-grade CICD pipeline?
+    Designing a production-grade CICD pipeline involves implementing a highly automated, secure, multi-stage workflow with robust quality gates and monitoring.
+- **Core Principles**
+   - Automation: Automate every repetitive task to minimize manual errors
+   - Version Control: Store all application code, IaC and pipeline configuration in a unified version control system like GitHub.
+   - Consistency: Use containers to ensure a consistent environment across development, testing, staging and production.
+   - Security: Integrate security scans (SAST, DAST, Snyk, Trivy) early in pipeline and manage secrets securely.
+   - Observability: Implment centralized monitoring and logging like Dynatrace, Prometheus and Grafana to quickly detect and troubleshoot issues in production.
+   - Reliability: Design for failuer with rollback mechanisms and manual approval gates for critical stages.
+ - **Key Stages**
+   - **Source Stage**:
+     - Trigger: The pipeline is automatically triggered by a code commit or a pull request to the version control system.
+     - Checks: Implement pre-commit hooks locally and branch protection rules in the repository to enforce formatting and basic linting before the code even enters the pipeline.
+  - **Build Stage (CI)**
+    - Compile: Compile the source code and manage dependencies.
+    - Artifact Creation: Package the application into an immutable artifact, such as Docker container image.
+    - Static Analysis: Perform static code analysis and security scans on the codebase and container image.
+  - **Test Stage**:
+     - Unit Test: Run fast-running unit tests on the build artifact.
+     - Integration Tests: Run more extensive intgration and end-to-end tests in a dedicated testing environment.
+     - Quality Gates: The pipeline fails if code coverage drops below a certain threshold or tests fail, providing quick feedback to developers.
+ - **Staging Stage (CD)**:
+   - Deploy to staging: Automatically deploy the artifact to a staging environment that mirrors production
+   - Acceptance Testing: Run user acceptance tests or manual review for final validation.
+   - Manual Approval: Implement a manual approval gate before deploying to production.
+- **Production Stage (CD)**
+   - Deploy to Production: Deploy the approved artifact to the production environment using robust strategies like blue-green or canary release.
+   - Configuration: Manage environment-specific configurations and secrets securely using dedicated tools or built-in CI?CD features.
+- **Monitoring and Feedback**
+    - Observe: Continuously monitor the application in production for performance metrics and errors.
+    - Feedback loop: Ensure automated feedback loops (notifcations, alerts) are in place to notify the team about issue immediately, enabling quick resolution and potential automated rollbacks.
+
