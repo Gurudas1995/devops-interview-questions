@@ -205,43 +205,6 @@ Hide/Show table of contents
 | 159 | [What is Canary Analysis?](#what-is-canary-analysis) |
 | 160 | [What is Infrastructure Drift?](#what-is-infrastructure-drift) |
 
-## Core DevOps Concepts
-
-1. ### What is DevOps?
-
-   DevOps is a set of practices that combines software development (Dev) and IT operations (Ops). It aims to shorten the systems development life cycle and provide continuous delivery with high software quality. DevOps is complementary with Agile software development; several DevOps aspects came from Agile methodology.
-
-   **[⬆ Back to Top](#table-of-contents)**
-
-2. ### What are the benefits of DevOps?
-
-   The main benefits of DevOps include:
-
-   1. Faster delivery of features
-   2. More stable operating environments
-   3. Improved communication and collaboration
-   4. More time to innovate (rather than fix/maintain)
-   5. Reduced deployment failures and rollbacks
-   6. Shorter mean time to recovery
-
-   **[⬆ Back to Top](#table-of-contents)**
-
-3. ### What is Continuous Integration?
-
-   Continuous Integration (CI) is a development practice where developers integrate code into a shared repository frequently, preferably several times a day. Each integration can then be verified by an automated build and automated tests.
-
-   Key aspects of CI include:
-   - Maintaining a single source repository
-   - Automating the build
-   - Making the build self-testing
-   - Everyone commits to the baseline every day
-   - Every commit builds on an integration machine
-   - Keep the build fast
-   - Test in a clone of the production environment
-   - Make it easy to get the latest deliverables
-   - Everyone can see the results of the latest build
-   - Automate deployment
-
    **[⬆ Back to Top](#table-of-contents)**
 
 ## Docker
