@@ -57,6 +57,32 @@ Best practice is to use a combination of weekly full, daily differential and fre
 
 15. ### Hos do you test a DR plan?
     DR testing involves a simulated failover to DR environment, followed by validation of data consistency and application connectivity. The RTO and RPO metrics are measured to ensure they meet buisness requirements. The process involves coordination with app teams and thorough documentation of all steps and results.
+
+16. ###  What is RTO and why is it important?
+   Recovery Time Objective (RTO) is the target time for resuming operations after an incident (e.g. 2 hours). It is crucial becuase it directly impacts business revenue, reputation, and SLA compliance.
+
+17. ### What is RPO and what does it measure?
+   Recovery Point Objective (RPO) is the maximum allowable data loss measured in time (e.g. last 15 minutes of data).It determines how frequently backups or snapshots must be taken.
+
+18. ### what is the difference between RTO and RPO and what are commenly used metrics?
+RTO relates to downtime (time to restore systems), while RPO relates to data loss (amount of data that needs re-entry).
+   - RTO : Seconds (hot site) to days (Tape restore)
+   - RPO : Zero (synchronus data replication) to 24 hours (daily backup)
+
+19. ### What stratagies are used in DR?
+ - **Active-Active**: Two or more db instances in different locations are active and processing read and write operations concurrently.
+ - **Active-passive**: Consist primary active site and one or more secondary standby sites. Under normal operation only primary site handle operations and standby site remains sync via data replcation and only activate if primary fails. Some variations in this are:
+    - **Pilot-Light**: Minimal version of infrastrucutre is running at passive site with core data continously replecated.
+    - **Warm Standby**: Scaled down but fully functional copy is running in standby site and can handle some traffic.
+    - **Cold Standby**: The most basic form, where a redundant replica is deployed but kept inactive and data might be restored from periodic backups.
+
+20. ### How do you secure a database.
+   - Using principal Of least privildge
+   - Strong authentication and encryption
+   - Auditing suspecious activity
+   - Regular security patches
+   - Network segmentations
+ - ****
     
  
    
