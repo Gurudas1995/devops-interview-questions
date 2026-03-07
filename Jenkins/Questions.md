@@ -83,4 +83,18 @@ Hide/Show table of contents
  - **CI(build/Test)**: The `Jenkinsfile` defines stages for building the application using tools like Maven or Gradle and running automated tests with frameworks like Junit or Selenium.
  - **CD (Deploy)**: The pipeline pushes the built artifact (e.g. Docker image) to an artifact repository (DockerHub or private registry) and then deployes it to target environment(e.g. Kubernetes cluster, AWS EC2 instance).
  - **Plugins**: Jenkins extensibility through numerous plugins allows it to integrate with virtually any testing or deployment tool and cloud platform.
+
+7. ### How do you integrate Git with Jenkins to trigger builds automatically?
+   - Configure GitHub Repo and credentials in the jenkins job under `source control managment`.
+   - Set up webhook in GitHub to notify code changes to Jenkins, due to this git plugin triggers build.
+   - `Poll SCM` is alternative to this but webhooks provide real-time triggering.
+8. ### What is `Jenkinsfile` and what role does it play in CI/CD pipeline?
+   It is a text file storing jenkins pipeline defination as code. we can store it in source control repo, it allows for versioning and consistent pipeline management.
+   
+10. ### What is difference between Jenkins, Githubactions and Azure DevOps?
+    - **Jenkins**: It is a selfhosted, open source automation server known for its flexibility and extensive plugins suitable for complex workflows.
+    - **GitHub Actions**: it is a cloud native platform integrated with GitHub, using simplar YAML configurations.
+    - **Azure DevOps**: It is Comprehensive commercial product by Microsoft, cloud base platform for entire software development lifecycle.
+
+11. ###
      
