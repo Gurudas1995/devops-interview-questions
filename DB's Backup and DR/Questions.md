@@ -37,5 +37,26 @@ like row 1. ### What is database performance tunning and why it is important?
  - Transactional log: backups all modifiction since the last log backup
 Best practice is to use a combination of weekly full, daily differential and frequent transactional logs backup.
 
+11. ### How would you ensure that your backups are valid and restorable?
+    Implementing regular automated process of testing the restoration of backups to seprate non-prod environement. Tools like `RESTORE VERIFYONLY` can also be used to check the integrity of backup file. The recovery procedure is thoroughly documented and tested peridically as part of DR plan.
+
+12. ### What are some common reasons a database operations might fail?
+ - Insufficient disk space on target server
+ - Incorrect file locations
+ - permission issues with service account
+ - correupted backup file
+ - Attempting to restore a backup to an older version of a database software
+
+13. ### What is difference between HA and DR?
+ - **HA**: Focuses on minimizing downtime from local failures like hardware, network failure in datacenter by quickly switching to redundant systems, ensuring continous operations.
+ - **DR**: Focuses on restoring service after major, catastrophic event affecting an entire region or data center often involve data recovery at secondary geographical seprate locations.
+
+14. ### Explain some technologies used for HA/DR.
+    In SQL server, `Always On Availability groups` provide HA and DR. `Failover clustering` offers HA by using shared storage and automatically switching instances.
+    For DR, technologies like `log shipping` or geo-replication in cloud databases are common.
+
+15. ### Hos do you test a DR plan?
+    DR testing involves a simulated failover to DR environment, followed by validation of data consistency and application connectivity. The RTO and RPO metrics are measured to ensure they meet buisness requirements. The process involves coordination with app teams and thorough documentation of all steps and results.
+    
  
    
