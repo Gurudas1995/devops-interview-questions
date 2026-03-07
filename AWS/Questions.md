@@ -25,16 +25,6 @@
    - Gateway Endpoints:
      A route table target for specific services like S3 and DynamoDB, routing traffic directly without ENI.
 
-3. ###  What is RTO and why is it important?
-   Recovery Time Objective (RTO) is the target time for resuming operations after an incident (e.g. 2 hours). It is crucial becuase it directly impacts business revenue, reputation, and SLA compliance.
-
-4. ### What is RPO and what does it measure?
-   Recovery Point Objective (RPO) is the maximum allowable data loss measured in time (e.g. last 15 minutes of data).It determines how frequently backups or snapshots must be taken.
-
-5. ### what is the difference between RTO and RPO and what are commenly used metrics?
-RTO relates to downtime (time to restore systems), while RPO relates to data loss (amount of data that needs re-entry).
-   - RTO : Seconds (hot site) to days (Tape restore)
-   - RPO : Zero (synchronus data replication) to 24 hours (daily backup)
 
 6. ### How would you access data in an S3 bucket from account A, when your application is running on an EC2 instance in Account B?
    Accessing an S3 bucket in Account A from an EC2 instace in Account B requires a cross account IAM role in Account A and a bucket policy that trusts account B. The EC2 instance in account B assumes this role- to obtain temporary credentials to access the bucket, ensuring secure, authorized access. Below are the steps.
