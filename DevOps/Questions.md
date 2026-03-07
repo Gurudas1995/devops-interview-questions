@@ -34,8 +34,8 @@ Hide/Show table of contents
   
 **[⬆ Back to Top](#table-of-contents)**
 
-3. ### What is Continous Integration?
-    Continous Integration (CI) is a development practice where developers integrate code into shared repository frequesntly, preferably several times a day. Each integration can then be verified by an automated build and automated tests.
+3. ### What is Continous Integration, Continous Delivery and Continous deployment?
+    **Continous Integration (CI)** is a development practice where developers integrate code into shared repository frequesntly, preferably several times a day. Each integration can then be verified by an automated build and automated tests.
 
    Key aspects of CI:
    - Maintaining a single source repository
@@ -48,6 +48,9 @@ Hide/Show table of contents
    - Make it easy to get the lastest deliverables
    - Everyone can see the results of the latest build
    - Automate deployment
+
+   **Continous Delivery(CD)** Extends CI by automatically preparing code changes for prod release after building and testing which requires manual approval
+   **Continous Deployment(CD)** An advancement in software release where code changes passing all tests without manual intervention gives faster feedback loop.
 
 **[⬆ Back to Top](#table-of-contents)**
 
@@ -124,4 +127,13 @@ Hide/Show table of contents
 - **Monitoring and Feedback**
     - Observe: Continuously monitor the application in production for performance metrics and errors.
     - Feedback loop: Ensure automated feedback loops (notifcations, alerts) are in place to notify the team about issue immediately, enabling quick resolution and potential automated rollbacks.
+ 
+13. ### What are some common diployment stratagies?
+    - **Blue-green Deployment**: Two identical environments (Blue and green) run concurrently, traffic is instantly switched to the new version minimizing downtime and enable easy rollback
+    - **Canary Deployment**: A new version is released to a small group of users initially, if stable, it's progressivelly rolled out to more users, mitigating the impact of potential failure.
+    - **A/B Testing**: Different usrs see different versions at same time. this is used to compare new features.
+    - **Rolling Update**: Gradually replace old version with newer version, keeping the service available.
+    - **Recreate**: Completely removing old version, then start new version. this encure downtime.
+    - **Shadow Deployment**: Duplicate real traffic to shadow version users only see the old version. use to test performance scaling silently in production conditions.
+  
 
