@@ -135,5 +135,15 @@ Hide/Show table of contents
     - **Rolling Update**: Gradually replace old version with newer version, keeping the service available.
     - **Recreate**: Completely removing old version, then start new version. this encure downtime.
     - **Shadow Deployment**: Duplicate real traffic to shadow version users only see the old version. use to test performance scaling silently in production conditions.
+   
+14. ### How do you handle a pipeline failure and ensure a quick recovery?
+    - Implement monitoring and alerts for immediate failure detection
+    - Analyze logs to identify the root cause
+    - For prouction automate rollbacks using blue-green or canary or rolling update deployment stratagies.
+    - Allow for quick restoration of the previous version.
+    - store artifacts and IaC codes in source code repositories like GitHub.
+
+15. ###
+    - 
   
 
