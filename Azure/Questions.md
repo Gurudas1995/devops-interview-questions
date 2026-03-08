@@ -51,5 +51,52 @@ Hide/Show table of contents
 9. ### How do you handle high performance requirements?
     By using premium storage account for lower latency, using multiple containers for parallel uploads, and enabling geo-redundancy to balance read loads.
 
-10. 
+10. ### What is Azure Resource Group?
+    It is a logical container with related resources for an azure solutions allow to manage and organize related resources efficiently and share same lifecycle.
+
+11. ### What is Azure lock?
+    It is very beneficial when you want to prevent accidental deletion and modification. We can apply Azure locks at subscription, resource groups or individual resource.
+     - **Read Only**: Authorized users can only read the resources, but cannot delete or modify.
+     - **Delete**: Authorized users can read and modify but cannot delete resources.
+
+12. ### Explain RBAC in Azure.
+    Azure RBAC provides fine-grained access to azure resources. You can segregate duties within your team and grant users only the access they need to perform their job. Job roles are predefined sets of permission RBAC allow to grant specific permissions to users or groups at particular scope. Roles such as contributor, Owner, Reader, RBAC administrator.
+
+13. ### What is Azure Policy?
+    It is service that helps you enforce the organizational standards and assess compliance at scale.
+    
+14. ### What is Microsoft Entra ID? and explain microsoft entra ID role.
+    It is microsoft's cloud based identity and access management service. It provides authentication and authorization for users, groups and applications.
+    If another admin or non-admin needs to manage microsoft entra ID, we can assign a entra ID role that provides the permission they need. The top role is `Global Admin` which can manage all aspects of microsoft entra ID.
+
+15. ### How do you add custom domain to microsoft entra ID?
+    Microsoft entra ID comes with default domain i.e. `example.onmicrosoft.com`. Custom domain can be added to microsoft entra ID by verifying domain ownership.
+
+16. ### What is Microsoft Entra ID connect?
+    Syncs on-premises AD with Microsoft entra ID, enables unified identity across cloud and on-premises.
+
+17. ### What is difference between an entra ID role and RBAC role?
+    - **Entra ID Role**: It is directory role for manageing entra ID itself.
+    - **RBAC Role**: Roles for managing Azure resources
+    `Privildged Managed Identity (PIM)` handles both roles, instead of users having permanant active assignment. PIM makes them eligible for roles.
+
+18. ### What is Azure VM?
+    Azure VM is an IaaS offering that allow you to create and manage virtual machines in cloud. You have full control over Operating System and can install and run any software on VM. Gives flexibility of virtualization without need to buy and maintain physical hardware, allow you to choose wide range of configurations including various sizes, OS etc.. You still need to maintain the VM by configuring, patching and installing the software that runs on it.
+
+19.  ### What is Azure boot diagnostic?
+    Enables user to observ state of VM as it is booting up by collection serial log information and screenshots. It helps to diagnose boot failure if VM gets into non-bootable state. It's enabled by default while creating VM.
+
+20. ### What are the major Azure VM Family?
+  - **General Purpose**: Provide balanced `CPU-to-Memory` ratio. Ideal for testing and development, small to medium databases and low to medium traffic web servers. **e.g. D-series, B-series**
+  - **Compute Opitimized**: Provide high `CPU-to-Memory` ratio. Suitable for medium traffic web servers, network appliances, batch processes and application servers. **e.g. F-series**
+  - **Memory Optimized**: Offer high `Memory-to-CPU` ratio. Great for relational databases, medium to large cache, in-memory analytics. **e.g. E-series, M-series**
+  - **Storage Optimized**: Offer high disk `throughput and I/O`. Ideal for bigdata, SQL, NoSQL databases, data warehousing and large databases.
+  - **GPU Optimized**: Specially designed for compute intensive and graphic intensive workload.
+  - **HPC Optimized**: For various HPC workloads such as rendering, weather simulation and financial risk analysis.
+
+21. ### Difference between 'stopped' and 'stopped deallocated'.
+    - **Stopped VM**: In this state OS is powered off, but underlying compute resources (CPU and Memory) are still allocated and reserved for that VM. Since Compute resources are still allocated, you continue to incure cost for that Vm
+    - **Stopped Deallocated**: Indicates the VM has been powered off and all its compute resources have been released back to azure.
+   
+22. ### 
 
