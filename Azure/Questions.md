@@ -98,5 +98,17 @@ Hide/Show table of contents
     - **Stopped VM**: In this state OS is powered off, but underlying compute resources (CPU and Memory) are still allocated and reserved for that VM. Since Compute resources are still allocated, you continue to incure cost for that Vm
     - **Stopped Deallocated**: Indicates the VM has been powered off and all its compute resources have been released back to azure.
    
-22. ### 
+22. ### What is Vnet?
+    It's an user created isolated network in cloud. We can accomplish communication with internet, between azure resources and with on-prem resources.
+    - Vnet Ranges:
+      - `10.0.0.0 - 10.255.255.255` - Class A
+      - `172.16.0.0 - 172.31.255.255` - Class B
+      - `192.168.0.0 - 192.168.255.255` - Class C
+23. ### How many IP's Are reserved in each subnet?
+    Total 5 IP's are reserved in each subnet i.e. first four and last one.
+     - 1st: Network address
+     - 2nd: Default Gateway
+     - 3rd and 4th: Reserved to map azure DNS IP to Vnet
+     - Last: Network broadcast
+24. ### 
 
