@@ -110,5 +110,30 @@ Hide/Show table of contents
      - 2nd: Default Gateway
      - 3rd and 4th: Reserved to map azure DNS IP to Vnet
      - Last: Network broadcast
-24. ### 
+
+24. ### What is Vnet Peering?
+    By default 2 Vnet cannot communicate with each other. To enable communication between them we need to create peering between two Vnet. Peering between two Vnet withing same region knon as `local peering`, while Peering between Vnet in differnet region is known as `Global Peering`. Both Vnet address space should be different.
+
+25. ### Difference between `Availability Zone` and `Availability Set`.
+    - **Availability zone**: Isolated locations within a region, designed to provide high availability and fault tolerance, also known as `data center`. Protect against entire data center failure.
+    - **Availability Set**: It is ensure that Azure VM are created across different physical rack and host in same data center. Protect against hardware failure within single datacenter.
+
+26. ### Explain Fault domain and update domain.
+    `Fault domain` prevent single points of hardware failure, while `update domain` allow update without disrupting VMs in availability set.
+
+27. ### What is Managed disk in Azure?
+    This are block level storage volumes that are managed by Azure and used with VM. Managed disk are like physical disk in on on-prem server, but they are virtualized. Available types of managed disks are ultra-disks, premium solid state disk(SSD), Standard SSD, and standard Hard disk drive (HDD).
+
+28. ### What is Network Security Group (NSG)?
+    It is act as virtual firewall used to filter in and out traffic. It can be attached to subnet of VM or NIC of VM or both. When it attached to subnet then all NSG rules applied to VMs in that Subnet.
+
+29. ### What is Azure Cost Management?
+   - This Azure resource helps organizations to monitor control and optimize their spending on Azure resources.
+   - It helps to define budgets for subscriptions, resource groups or specific resources and set alerts to notify you when spending approaches or exceeds limits.
+   - Identify underutilized resources and resize, stop or delete them to reduce Cost.
+   - Pre-purchase reserved instances or savings plans for VMs or databases.
+
+30. ### Explain VM Scaleset in Azure.
+    VM Scaleset provide high availability and ability to handle increase and decrease in demand. You can also use your custom image you need to set minimum and maximum VM count for autoscaling to happen.
+    
 
