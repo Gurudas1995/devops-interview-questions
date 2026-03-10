@@ -135,5 +135,13 @@ Hide/Show table of contents
 
 30. ### Explain VM Scaleset in Azure.
     VM Scaleset provide high availability and ability to handle increase and decrease in demand. You can also use your custom image you need to set minimum and maximum VM count for autoscaling to happen.
+
+31. ### What are basic, standard and Gateway Load Balancer?
+    - **Basic Load Balancer (Retired-2025)**: Designed for small scale applications  that do not require high availability, zone redundancy, or strict security, often used for development or testing.
+    - **Standard Load Balancer**: A high-performance secure, and reliable option suitable for production workloads. It supports zone-redundant, cross-region traffic routing, and features a 'scure by default' model. (NSGs are required)
+    - **Gateway Load Balancer**: Specifically designed to transperently deploy, scale and manage third-party Network Virtual Appliances, such as firewalls or deep packet inspection tools, without requiring complex traffic engineering.
+
+32. ### 
+    
     
 
