@@ -17,21 +17,21 @@ Hide/Show table of contents
 
 
 1. ### What is an Azure Stroage Account?
-  A container that provides a single namespace for all Azure Storage data objects, including blobs, files, queues and tables. It provides durability, scalability and High availability.
-  - *Blob Storage:* Unstructured data (images, documents).
-  - *File Storage:* Shared file systems (SMB/NFS)
-  - *Queue Storage:* Messaging for workflow processing.
-  - *Table Storage:* NoSQL key-attribute storage.
+  A container that provides a single namespace for all Azure Storage data objects, including blobs, files, queues and tables. It provides durability, scalability and High availability. We can store upto 500TB of data.
+  - **Blob Storage**: Unstructured data (images, documents).
+  - **File Storage**: Shared file systems (SMB/NFS)
+  - **Queue Storage**: Messaging for workflow processing.
+  - **Table Storage**: NoSQL key-attribute storage.
 
 2. ### What are the different storage tiers available?
-   - Hot: High-access, Higher storage cost, lower access cost.
-   - Cool: Infrequent access. lower storage cost, high retrieval time.
-   - Archive: Rare access, lowest storage cost, high retrieval time.
+   - **Hot tier**: High-access, Higher storage cost, lower access cost. Designed for data that is accessed frequently.
+   - **Cool**: Infrequent access. lower storage cost, high retrieval time. Designed for infrequnetly accessed data but stored atleast 30 days.
+   - **Archive**: Rare access, lowest storage cost, high retrieval time. Designed for rarely accessed data and stored for long periods.
 
 3. ### Explain the different Azure Blob types
-   - Block Blobs: Used for text/binary files, documents, media files(190TB)
-   - Page Blobs: Userd for random read/write, specifically for Azure VM disks (8TB)
-   - Append Blobs: Optimized for append operations, ideal for logging.
+   - **Block Blobs**: Used for text/binary files, documents, media files(190TB)
+   - **Page Blobs**: Userd for random read/write, specifically for Azure VM disks (8TB)
+   - **Append Blobs**: Optimized for append operations, ideal for logging.
 
 4. ### How do you Secure an Azure storage account?
    Using shared access keys (Account Keys), Shared Access Signatures (SAS), with Entra ID authentication, firewall rules and virtual networks. Data is encrypted at rest and in transit.
@@ -40,10 +40,11 @@ Hide/Show table of contents
    Shared Access Signature (SaS) A URI that grants limited, temporary access rights to specific storage resources without sharing primary access keys. Service SAS delegates access to single service (Blob, File, Table or Queue). An Account SaS delegates access to resources across multiple services.
   
 7. ### Explain different types of storage redundancy.
-   - LRS (Locally Redundant Storage): 3 copies in one data cneter.
-   - ZRS (Zone-Redundant Storage): 3 copies across availability zones.
-   - GRS (Geo-Redundant Storage): LRS +3 copies in a secondary paired region.
-     - RA-GRS: Read access to the secondary region of GRS.
+   - **LRS (Locally Redundant Storage)**: 3 copies in single data center. Cheapest
+   - **ZRS (Zone-Redundant Storage)**: Data is replicated across three different Availability zone within a single AZ.
+     - **G-ZRS**: Data replicated across two regions. primary region using ZRS and secondary region using LRS. 
+   - **GRS (Geo-Redundant Storage)**: LRS +3 copies in a secondary paired region.
+     - **RA-GRS**: Read access to the secondary region of GRS.
        
 8. ### What is soft delete in Azure Blob Storage?
    A feature that allows for the recovery of deleted blobs, containers, or snapshots within a specified retention period, protecting against accidental deletion.
@@ -141,7 +142,22 @@ Hide/Show table of contents
     - **Standard Load Balancer**: A high-performance secure, and reliable option suitable for production workloads. It supports zone-redundant, cross-region traffic routing, and features a 'scure by default' model. (NSGs are required)
     - **Gateway Load Balancer**: Specifically designed to transperently deploy, scale and manage third-party Network Virtual Appliances, such as firewalls or deep packet inspection tools, without requiring complex traffic engineering.
 
-32. ### 
+32. ### Explain Azure Traffic Manager.
+    It is DNS based traffic load balancer. It controls traffic distrubution to ensure low latency access and provide failover support. Traffic manager uses DNS to direct client requests to the appropriate endpoints based on traffic routing method as below:
+    - **Weighted**: Client traffic is load balanced across multiple endpoints. Higher number means more weight, more traffic on that endpoints.
+    - **Performance**: Client traffice is routed to lowest latency endpoint
+    - **Priority**: Traffic sends to primary endpoints, if that fails, traffic redirected to secondary endpoint.
+    - **Geographic**: Traffic routed based on geographic location.
+    - **Multivalue**: configured multiple healthy endpoints and client can choose any of them to send traffic.
+    - **Subnet**: Client traffic is sent to Specific iendpoints based on source public IP subnet.
+
+33. ### What is route table in Azure?
+    Route tables controls how traffic is directed in Vnet. It contains set of rules called routes. User defined routes are known as `UDR`.
+
+34. ### What is NAT Gateway?
+    It Provides internet connectivity to a VM. This can be used where users not want to provide individual public IP to VM but they want outbound internet access from VM. NAT gateway do not support inbound connections coming from internet to VM.
+
+35. ### 
     
     
 
