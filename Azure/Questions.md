@@ -157,7 +157,46 @@ Hide/Show table of contents
 34. ### What is NAT Gateway?
     It Provides internet connectivity to a VM. This can be used where users not want to provide individual public IP to VM but they want outbound internet access from VM. NAT gateway do not support inbound connections coming from internet to VM.
 
-35. ### 
+35. ### What is Azure CDN?
+    Content Delivery Network improves performance by caching content at edge locations globally and improves content load times.
+
+36. ### What is Azure Backup?
+    It is cloud based service that provides reliable backup and restore capabilities for your VM. It helps to protect your critical data from accidental deletion, corruptions or ransomware. Using this we can perform complete VM restore.
+
+37. ### What is instant restore data and soft delete in Azure backup?
+    - **Instant Restore**: This allows restoring data from backup snapshot instantly which helps in reducing restore times.
+    - **Soft Delete**: It retains deleted backups for a configurable period, protecting against accidental deletions.
+
+38. ### What is Azure Site Recovery?
+    Azure Site Recovery offers disaster recovery by replicating resources between primary and secondary regions.
+
+39. ### Explain the difference between failover and failback?
+    - Failover: Switches to a secondary locations
+    - Failback: Returns services to the original primary location.
+
+40. ### What is Azure Monitor?
+    It helps to understand how VMs and applications are performing and proactivelly identify issues and helps in responding to critical situations that may affect them.
+
+41. ### What is Azure Expressroute?
+    It is private, dedicated connection between Azure and on-prem infrastructure for faster and secure data transfer
+
+42. ### What is site-to-site VPN?
+    It connects on-premises networks to azure Vnet over the internet, allowing secure communication between environment.
+
+43. ### What is an Azure Bastion?
+    azure Bastion provides secure RDP and SSH access to VMs without exposing them to public internet.
+
+44. ### What is Point-to-site VPN?
+    Allows individual clients to securely connect to azure Vnet from there devices.
+
+45. ### What are the main types of Azure support plan?
+    - **Basic**: Free for general billing and subscription support.
+    - **Developer**: For trial and non-prod environment.
+    - **Standard**: For prod workload with faster response times.
+    - **Professional Direct**: For buisness critical workloads with proactive guidance.
+
+46. ### 
+    
     
     
 
