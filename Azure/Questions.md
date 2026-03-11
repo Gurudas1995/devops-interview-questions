@@ -195,7 +195,23 @@ Hide/Show table of contents
     - **Standard**: For prod workload with faster response times.
     - **Professional Direct**: For buisness critical workloads with proactive guidance.
 
-46. ### 
+46. ### What are Azure Tags?
+    Azure tags are lables (Key Value Pair) that can be applied to azure resources for better organization, tracking and cost management. tags help to categorize resources by department, environment or by project and help to manage them effectively.
+
+47. ### How does priority work in Azure NSG?
+    NSG rules in Azure have a priority number between 100 and 4096. Lower the number, higher the priority and it get processed first. This allows admin to control the order of rule execution.
+
+48. ### What is Application Security Groups (ASG)?
+  ASG allow you to create a group and add virtual machines to that group. so we can use this group in inbound and outbound rule of NSG.
+  We can call this group multiple times in NSG. and do not need to add individual IP addresses in NSG. we can add and remove VMs from ASG anytime.
+
+49. ### What is snapshot in Azure?
+    Snapshot is point-in-time backup of a disk in Azure. It's used to quickly backup VM disk before performing changes, allowing for easy recovery if needed.
+
+50. ### What is host caching in Azure?
+    Host cachin temporarily stores frequently accessed data on the VM's local storage to improve read/write performance. It's commenly used for OS and data disks on VMs, with options like read-only or read/write for better performance in scenario like db applications.
+
+51. ### 
     
     
     
