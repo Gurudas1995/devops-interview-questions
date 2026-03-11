@@ -1,14 +1,13 @@
 # Azure Interview Questions and Answers
 
 ---
-<details>
-<Summary>1. ### What is an Azure Stroage Account? </Summary>  
+
+1. ### What is an Azure Stroage Account?  
   A container that provides a single namespace for all Azure Storage data objects, including blobs, files, queues and tables. It provides durability, scalability and High availability. We can store upto 500TB of data.
   - **Blob Storage**: Unstructured data (images, documents).
   - **File Storage**: Shared file systems (SMB/NFS)
   - **Queue Storage**: Messaging for workflow processing.
   - **Table Storage**: NoSQL key-attribute storage.
-</details>
 
 2. ### What are the different storage tiers available?
    - **Hot tier**: High-access, Higher storage cost, lower access cost. Designed for data that is accessed frequently.
@@ -23,8 +22,9 @@
 4. ### How do you Secure an Azure storage account?
    Using shared access keys (Account Keys), Shared Access Signatures (SAS), with Entra ID authentication, firewall rules and virtual networks. Data is encrypted at rest and in transit.
 
-5. ### What is SaS?
-   Shared Access Signature (SaS) A URI that grants limited, temporary access rights to specific storage resources without sharing primary access keys. Service SAS delegates access to single service (Blob, File, Table or Queue). An Account SaS delegates access to resources across multiple services.
+5. ### What is Share Access key and SaS?
+   - **Share Access key**: it grants full admin access to storage accounts. used for secure high level access but requires caution to avoid unauthorized use.
+   - **Shared Access Signature (SaS)**: it is an URI that grants limited, temporary access rights to specific storage resources without sharing primary access keys. Service SAS delegates access to single service (Blob, File, Table or Queue). An Account SaS delegates access to resources across multiple services.
   
 7. ### Explain different types of storage redundancy.
    - **LRS (Locally Redundant Storage)**: 3 copies in single data center. Cheapest
@@ -198,7 +198,28 @@
 50. ### What is host caching in Azure?
     Host cachin temporarily stores frequently accessed data on the VM's local storage to improve read/write performance. It's commenly used for OS and data disks on VMs, with options like read-only or read/write for better performance in scenario like db applications.
 
-51. ### 
+51. ### What is private endpoint and storage endpoint in Azure?
+    It allows Azure resources to access service securely within Vnet by assigning private IP's instead of exposing service publicaly. It is useful for high security like connecting database, storage accounts.
+    - **Storage End point**: It is URL that uniquely identifies each service within an Azure storage account, such as blob, Queue, Table or file storage.
+
+53. ### What is Password hash synchronization and password through synchronization in Azure entra ID?
+    - **Pass-Hash-Sync**: It synchronize on-prem passwords to entra ID for seamless access and single sign-on experiance. this is used when an organization want simple, cloud based authentication method.
+    - **Pass-Through-Auth**: Direclty verifies password against the on-prem AD. Used when a higher level of security is needed or when policies require real time authentication, without storing passwords in the cloud.
+
+54. ### what is difference between Azure VM and Azure app services?
+  - Azure VM is type of IaaS offering that allows to create and manage VM in cloud.It provide full control over OS.
+  - Azure App service is a PaaS offering that allows to build, deploy, and scale webapp without managing underlying infrastructure.
+
+55. ### What is Service principal in Azure?
+  It is specific identity for applications, services or automated tools to securely access azure resources. It acts like a user account but for non-humans, providing controlled access via assigned roles rather than full user priviliges.
+
+56. ### What is managed identity in Azure?
+    It is a service that provides an automaticcally managed identity in Azure entra ID for applications to use when connected to other azure AD-protected resources. It eliminated the need for developers to store and manage credentials in code which enhances security and simplifies management.
+- **System Assigned**: The identities life cycle is tied to the resoure, it is automatically created when the resource is created and deleted when resource got deleted
+- **Usr-assigned**: It can be assigned to multiple resources, making it more efficient for scenarios where several resources need the same identity and permissions.
+
+57. ### What is service connection?
+    Service connections is secure link between Azure DevOps pipeline and external services like Azure, GitHub, Docker allowing pipelines to authenticate and interact with them for task like deployment, using defined identity (Service Principle) with specific permission.
     
     
     
