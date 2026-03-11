@@ -1,27 +1,14 @@
 # Azure Interview Questions and Answers
 
 ---
-### Table of Contents
-
-<details open>
-<summary>
-Hide/Show table of contents
-</summary>
-
-| No. | Questions |
-| --- | --------- |
-| 1   | [List All git Commands.](#List-All-git-Commands) |
-| 2   | [What are the benefits of DevOps?](#what-are-the-benefits-of-devops) |
-| 3   | [What is Continuous Integration?](#what-is-continuous-integration) |
-
-
-
-1. ### What is an Azure Stroage Account?
+<details>
+<Summary>1. ### What is an Azure Stroage Account? </Summary>  
   A container that provides a single namespace for all Azure Storage data objects, including blobs, files, queues and tables. It provides durability, scalability and High availability. We can store upto 500TB of data.
   - **Blob Storage**: Unstructured data (images, documents).
   - **File Storage**: Shared file systems (SMB/NFS)
   - **Queue Storage**: Messaging for workflow processing.
   - **Table Storage**: NoSQL key-attribute storage.
+</details>
 
 2. ### What are the different storage tiers available?
    - **Hot tier**: High-access, Higher storage cost, lower access cost. Designed for data that is accessed frequently.
