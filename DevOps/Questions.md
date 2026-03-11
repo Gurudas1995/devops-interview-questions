@@ -163,6 +163,19 @@ Hide/Show table of contents
        - Provides serverless computing capabilities
        - Examples: AWS Lambda, Azure Functions
 
-    - 
+16. ### What is microservice architecture? what are benifits and drawbacks?
+    It is a way that structure an applcation as a collection of small, autonomus, and loosely coupled specific buisness capabilities. Each service runs its own process and communication with others using lightweight mechanisms like HTTP/REST or message queues.
+    - **Benifits**:
+      - **Scalability**: Individual services can be scaled horizontally based on demand optimizing resource usage.
+      - **Flexibility**: Teams can choose different technology stacks for each service.
+      - **Fault Isolation**: The failure of one service does not necessarily bring down the entire system.
+      - **Faster Development and Deployment**: Smaller independant codebases allow for faster development cycle and CI/CD.
+    - **Drwabacks**:
+      - **Complexity**: Managing large number of independant services requires sophisticated tools for orchestration, monitoring and logging.
+      - **Inter-service Communication**: Network latency and potenital communication failure between services can introduce new challanges.
+      - **Data Consistency challange**: Ensuring data consistency acorss multiple independant codebases is complex and often requires different patterns like eventual consistency.
+
+17. ### 
+    
   
 
