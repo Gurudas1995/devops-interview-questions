@@ -17,7 +17,7 @@ Hide/Show table of contents
 
 
 1. ### How do you check open ports in Linux?
-Using `netstat -tuln` or `ss -tuln`.
+Using `netstat -tuln` or `ss -tuln`. The 'lsof -i' command also works well. (-t for TCP, -u for UDP, -l for listning port, -n for Numeric address).
 
 2. ### How do you check the default gateway in linux?
 Using `ip route show` or `route -n`.
@@ -121,7 +121,7 @@ Using `ip route show` or `route -n`.
    Even if CPU is low, high I/O wait or swap usage (memory pressure) or zombie processes can slow the system. I use `vmstat` and `iostat` to confirm.
 
 8. ### Load average is high but CPU usage is low, why?
- Load average includes running processes and processes waiting for disk or I/O. To check we can use `top`. High load with low CPU useually means I/O bottleneck, not CPU contention.
+ Load average includes running processes and processes waiting for disk or I/O. To check we can use `top` or 'htop'. High load with low CPU useually means I/O bottleneck, not CPU contention.
 
 9. ### Application works manually but fails in CRON what will be the reason?
 Cron has limited environment variables. Cron doesn't load user profiles, so commands fail unless paths and variables are explicitly defined.
@@ -132,6 +132,39 @@ I first stabilize the system by clearing logs or temp files, then permanently fi
 11. ### High memory usage but no big processes present what will be the cause?
 Linux uses memory for buffers/cache. we can check it using `free -h`.
 High memory usage isn't an issue unless swap is used heavily. Linux releases cache automatically when needed.
+
+12. ### What is Linux boot process and why is it important for DevOps?
+    The Linux boot process is the series of steps the system takes from the moment you hit the power button until the OS is fully functional and ready for users. below are the 6 stages for Boot process.
+ - **BIOS/UEFI**: The hardware performs a POST(Power-On-Self-Test) and looks for a bootable device like a hard drive or SSD.
+ - **MBR/GPT**: The system executes the Boot Loader code located in the first sector of the disk.
+ - **GRUB(Grand Unified Bootloader)**: This is the menu where you select your OS. It loads the Kernel and the initrd/initramfs (a temp file system) into memory.
+ - **Kernel**: The "brain" of the OS initializes hardware drivers and starts the very first process, known as init or systemd.
+ - **init(systemd)**: The parent of all processes. It looks at the target like graphical or multi-user mode and starts the necessary background services (daemons).
+ - **Runlevel/Target**: The system reaches its final state (e.g. a login screen or a command-line prompt).
+
+It matters for DevOps for below points:
+ - **IaC**: When we automate server spin-ups using tools like terraform, understanding the boot process helps you troubleshoot why an instance fails to initialize.
+ - **Performance Tuning**: DevOps engineers often need to optimize boot times for auto-scaling groups knowing which services start when allows you to strip out unncessary stpes.
+ - **Troubleshooting and Security**: If a production server goes down and won't restart, you need to know if the issue is a corrupted FRUB config, a missing Kernel module, or a failed systemd service.
+
+13. ### Explain purpose of 'Inode' in Linux.
+    An 'Inode (Index Node)' is a fundamental data structure used by filesystem to store metadata about a file or directory and pointers to its actual data blocks. Every file and directory on a Linux system has one unique inode. Inode serve below critical purposes:
+    - **Metadata Storage**: They contain file details like permisson, owner, size, timestamps, and link count excluding the filename and data content.
+    - **Data Location**: They hold pointers to the physical disk blocks containing the actual file data.
+    - **Decoupling**: By separating the filename in directories from the metadata, Linux allows featureslike hard links and easy file renaming.
+
+14. ### How do you find and all kill a process that is consuiming too much memory or CPU?
+    Use 'top' or 'htop' to idnetify process ID (PID) of resource-hungry process. then use 'kill' command with PID. By default, 'kill <PID>' sends a graceful termination signal. If the process doesn't stop, use 'kill -9 <PID>' to forcefully terminate it.
+
+15. ### How do you securely transfer files between two linux servers?
+    Using 'SCP' or 'rsync' over SSH.
+    - SCP is ideal for simple direct file copies e.g. SCP file.txt user@remote:/path/
+    - rsync is better for syncing directories, handling incremental trasfers and preserving file attributes.
+    - Both leverages SSH encryption for security.
+
+16. ###
+    
+    
 
     
     
