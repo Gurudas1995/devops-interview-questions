@@ -108,7 +108,21 @@
  - Security Guardrails: Preventing the deletion of CLoudtrail logs, diabling GuardDuty, or blocking root user usage.
  - Cost Management - Restrictring the ability to launch expensive instance types.
 
-22. ###
+22. ### How can instance 2 with a static IP communicate with instance 1 which is in a private subnet and mapped to a multi-az load balancer?
+    Instance 2 with staic IP can communicate with instance 1 by sending traffice to the load balancer's DNS name via HTTPS/HTTP. The ALB acts as a proxy, routing requests from public IPs to private instances, provided the security groups permit traffic between them. Here are the specific steps to enable this communication.
+ - **Configure Load Balancer Security Group**: The ALB's SG must allow inbound traffic from instance 2's static IP or its security group on the listner port i.e. 80 or 443.
+ - **Configure instance 1 Security Group**: the Security group for instance 1 must allow inbound traffic from the ALB's security group.
+ - **Use Proper Routing**: Ensure the VPC subent routing tables allow traffic to flow between the public subnet and the private subnet.
+ - **Internal Vs. Public ALB**: If instance 2 is inside same VPC, use an internal ALB. if isntance 2 is on the internet, use internet facing ALB.
+
+23. ### For an ec2 instance in a private subnet, how can it verify and download required packages from the internet without using NAT gateway or bastion host? Are there any other AWS services that can facilitate this?
+    We can use **VPC endpoints (AWS PrivateLink)** or **AWS Systems Manager (SSM)**. The instance must have an IAM role that allows it to communicate with SSM endpoints.
+ - **VPC Endpoints**: VPC endpoints allow private, secure connectivity to AWS services like S3, ECR, or systems Manager without traversing the public internet.
+ - **AWS Systems Manager**: If the goal is to install software package, we can use `SSM run command` or patch Manager to execute commands on the instance without needing SSH access or public IP addresses.
+
+24. ### What is the typical latency for load balancer, and if you encounter high latency, what monitoring steps would you take?
+    
+    
    
 
 
