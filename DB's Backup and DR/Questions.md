@@ -82,7 +82,10 @@ RTO relates to downtime (time to restore systems), while RPO relates to data los
    - Auditing suspecious activity
    - Regular security patches
    - Network segmentations
- - ****
+
+21. ### How do you handle data consistency across multiple microservices when each has its own database?
+    Using `eventual consistency`, where data updates propagate overtime, acceptable for scenarioes not requiring immediate strong consistency.
+
     
  
    
