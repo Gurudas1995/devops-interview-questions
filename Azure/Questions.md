@@ -220,6 +220,28 @@
 
 57. ### What is service connection?
     Service connections is secure link between Azure DevOps pipeline and external services like Azure, GitHub, Docker allowing pipelines to authenticate and interact with them for task like deployment, using defined identity (Service Principle) with specific permission.
+
+58. ### Explain your Azure pipeline yaml file.
+    I have build a azure pipeline configuration file for terraform module release. I used cicd pipeline template in the extend section to automate testing and release process for terraform modules. Below are the main sections:
+ - **Resource Section**: this section contain repository path, its type and name.
+ - **Trigger**: We set trigger for master so pipeline automatically run whenever changes are pushed to main branch.
+ - **Variables**: I passed variable like module name, module version, subscription id etc.. which we passed this as input paramter to pipeline template.
+ - **Agent Pool**: I used `linux-vmss-agent-pool` having configuration as 75 VMs Max and 4 VMs as minimum standby.
+ - **Extend Section**: this section we called cicd template in referenced repository and passed the defined variables as template parameters.
+ - **Pipeline Template**: this template has below multiple stages.
+   - **Setup stage**: this stage run any prerequisite step passed via the `PrerequisiteSteps`. This stage allows template consumer to inject custom setup logic.
+   - **Test stage**: This is core unit testing stage which do multiple tasks such as `checks out source code`, `install unzip utility`, `fetches terraform api key`, `configure terraform cli credentials`, `setting up azure service principal as environment variable to authneticate terraform`,`installing latest terraform`, `initiliazing terraform`, and `executing terraform test`. for completing this task i called powershell script file by giving input as filepath and arguments.
+   - **Prerelease stage**: This stage creates a prerelease version of terraform module by using `git tag`. It tags the commit with version number and pushes to origin. further it create a module in terraform private registry with pre-release tag.
+   - **Regression Test**: this stgae runs regression tests against the prerelease module pushed in above stage.
+   - **Release stage**: After successfule regression test, this stage pushes this module version removing `prerelease` suffix. this is happened only through master branch or release branch or hotfix branch. i have setup manual apporoval gate before this stage begin, so that manual review should done for the terraform module.
+
+59. ### What is the role of an API Gateway?
+    API gateway is single entry point for clients, routing requests and handling concerns such as authentication, load balancing and rate limiting.
+
+60. ### What is service discovery and why is it important?
+    Service discovery allows services to register and locate each other dynamically in environments where instances changes frequently.
+
+61. ### 
     
     
     
