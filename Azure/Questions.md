@@ -162,7 +162,7 @@
     - Failback: Returns services to the original primary location.
 
 40. ### What is Azure Monitor?
-    It helps to understand how VMs and applications are performing and proactivelly identify issues and helps in responding to critical situations that may affect them.
+    It's a comprehensive service for collecting, analyzing and acting on telemetry from azure and hybrid environments, offering insights into performance, availability and usage. It helps to understand how VMs and applications are performing and proactivelly identify issues and helps in responding to critical situations that may affect them.
 
 41. ### What is Azure Expressroute?
     It is private, dedicated connection between Azure and on-prem infrastructure for faster and secure data transfer
@@ -241,8 +241,25 @@
 60. ### What is service discovery and why is it important?
     Service discovery allows services to register and locate each other dynamically in environments where instances changes frequently.
 
-61. ### 
+61. ### How do you setup azure monitoring for azure VM?
+    Enable the Azure monitor agent. Configure guest OS diagnostics/log settings to send data like performance, logs to a log analytics workspace. Use built-in azure monitor metrics like CPU, network and create alert rules, with action groups (email, webhooks) for proactive notifications.
+
+62. ### What are log analytics and application insights.
+    - **Log Analytics**: it uses Kusto Query Language (KQL) for deep log analysis from VMs resources.
+    - **Application insgihts**: this is for APM (Application Performance Monitoring), for tracking app performance, usage, exceptions and availability for web apps or API.
+
+63. ### How do you monitor across multiple subscriptions/tenants?
+    Use management groups to apply policies and monitoring at scale. Leverage Azure resource graph for querying resources across the environment. Centralize data into shared log analytics workspace in a dedicated monitoring subscription.
+
+64. ### Explain the component of an azure alert rule.
+    An Alrt rule has a scope (subscriptions, resources), condtions like metric, log signal, threshold, frquency and action triggred by an action group like sending notification like mail/webhook/ITSM.
+
+65. ### What is action group?
+    An action group defines who gets notified and what actions to take when an alert fires.
     
-    
+67. ### How do you handle high CPU alerts on Web app?
+    Use application insight to find the code/request causing the spike. Set up Azure monitor alert rule on the app service plans CPU metric. Trigger an action group to send alert. For auto healing use Azure automation runbook or logic apps triggered by the action group to scale out or restart app.
+
+68. ### 
     
 
