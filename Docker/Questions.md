@@ -29,3 +29,25 @@ Hide/Show table of contents
  - Self-healing: It continuously monitors the health of containers and nodes, automatically restarting or replacing failed containers and rescheduling them on healthy nodes, which ensures high availability and resilience without manual intervention.
  - Load Balancing and Service Discovery: Kubernetes provides a stable network endpoint (service) and load balances traffic across multiple container instances, ensuring that no single container is overwhlmed and enabling reliable communicartion within the application.
  - Declarative Management: Users define the desired state of their application using configuration files in YAML and kubernetes works to maintain that state, simplifying complex updates and making rollbacks easy to execute if something goes wrong.
+
+2. ### What is docker and how does it differ from VM?
+   - Docker is an open source platform that automates the deployment, scaling and management of applications within isolated, lightweight containers.
+   - The key difference between VM and docker is isolation level.
+   - VMs virtualize the hardware, running a full seprate OS for each instance on a hypervisor, making them resource heavy and slow to start.
+   - Docker container virtualize the OS, sharing the host machines OS kernel while keeping applications isolated from each other. this makes them much more lightweight, efficient and fast to start.
+
+3. ### What is docker image?
+   Docker image is read-only, static template that contains application, liabraries, dependancies and configuration needed to run the applications.
+
+4. ### What is docker file?
+   It is a text file that constructs all instructions needed to build a docker image. common instructions includes:
+   - FROM: Specifies base image like alpine, ubuntu.
+   - RUN: Executes command in a new layer on top of the current image like installing packages.
+   - COPY or ADD: Adds files from the host to the container image.
+   - CMD: Defines the default command to run when container starts.
+   - EXPOSE: Informs docker that the container will listen on specific network ports at runtime.
+
+5. ### How do you manage data persistence in docker?
+   Data Persistance can be managed using docker volumes and bind mounts. Volumes are preferred method. They are managed by docker (stored in specific area on the host file system) and persist even if the container is stopped or removed, making them ideal for database storage. Bind Mounts link specific directory in the container. They offer full control over the host file location but can have security implecations.
+
+6. ### 
