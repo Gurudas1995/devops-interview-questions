@@ -29,7 +29,7 @@ A subnet divides a large network into smaller parts to improve performance and s
 A gateway connects one network to another, usually to the internet.
 
 5. ### What is DNS?
-Domain Name System (DNS) translates domain names into IP addesses.
+Domain Name System (DNS) translates domain names into IP addesses. It is hierachical and decentralized system that translate human readable domain names into machine IP address.
 
 6. ### What is DHCP?
 Dynamic Host Configuration Protocol (DHCP) automatically assigns IP address to devices.
@@ -157,3 +157,32 @@ The last IP in a subnet (used to send messages to all hosts)
 
 32. ### Whar is CIDR? why it was introduced?
 Classless Inter-Domain Routing (CIDR) allows flexible subnetting using "/" notation. Introduced to avoid waste of IPs caused by fixed class-based addressing. 
+
+33. ### Explain DNS server role.
+    - **Authorative**: Holds definative DNS records for a domain (primary/secondary) zone.
+    - **Recursive (Resolver)**: Accepts queries from client, finds the answer using iterative queries to other servers and returns it.
+    - **Caching Only**: Stores recent DNS answers to speed up future request.
+    - **Zones**: A portion of DNS namespaces managed by a DNS server.
+
+34. ### What are DNS records?
+    - **A/AAAA**: Maps domain to IPv4 / IPv6
+    - **CNAME**: Alias for another domain name.
+    - **MX**: Specifies mail servers for domain
+    - **PTR**: Reverse lookup (IP to hostname)
+    - **SOA**: for Zone management info.
+    - **SRV**: To locate specific services
+
+35. ### Expalin DNS workflow.
+    - Client Request - User types hostname
+    - Cache check - client checks its local cache and the OS cache.
+    - Resolver query - if not cached, client ask it's configured recursive resolver for recursive resolution
+    - Recurive resolution:
+      - Resolver asks root server
+      - Root server returns address of Top Level Domain (TLD for e.g. '.com')
+      - Resolver ask TLD server
+      - TLD server returns the address of the authorative Name server.
+      - Resolver asks the authorative server.
+      - Authorative server returns the IP address.
+
+36. ### 
+    
