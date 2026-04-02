@@ -26,5 +26,11 @@ Hide/Show table of contents
 2. ### What exactly happens technically when you run `kubectl apply` against a Kubernetes cluster?
    When we execute `kubectl apply` the command parses YAML manifest file, checks the desired state(declared resources and configuration), and sends a RESTful API request to kubernetes API server. The server evakuates if the resource already exists.
    - If it exists, it performs patch operation to update only chnaged fields.
-   - If it's new the server creates the resource from scratch. Controllers then reconcile the cluster towards the desired state, e.g.. deploying pods, services, etc.. changes are persisted in etcd, the backing data store. 
+   - If it's new the server creates the resource from scratch. Controllers then reconcile the cluster towards the desired state, e.g.. deploying pods, services, etc.. changes are persisted in etcd, the backing data store.
+  
+3. ### What role do docker and kubernetes play in a microservice architecture?
+   - Dokcer used to package microservices and their dependancies into portable container.
+   - Kubernetes orchestrate containers, automating deployment, scaling and management and providing features like service discovery and load balancing.
+
+4. ### 
 
