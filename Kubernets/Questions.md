@@ -32,5 +32,13 @@ Hide/Show table of contents
    - Dokcer used to package microservices and their dependancies into portable container.
    - Kubernetes orchestrate containers, automating deployment, scaling and management and providing features like service discovery and load balancing.
 
-4. ### 
+4. ### What is Kubernetes? and why do we need container orchestration?
+   Kubernetes is an open-source platform for managing, automating the deployment scaling and operation of containerized applications. container orchestration is necessary to manage large, dynamic environemnets with many containers across multiple hosts.
+   main task of kubernetes:
+   - Provisioning and deployments
+   - Load balancing and service discovery
+   - Resource allocation and monitoring
+   - Self-healing
+
+5. ### Explain key components of Kubernetes architecture.
 
