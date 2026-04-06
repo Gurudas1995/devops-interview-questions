@@ -175,7 +175,37 @@ Hide/Show table of contents
       - **Inter-service Communication**: Network latency and potenital communication failure between services can introduce new challanges.
       - **Data Consistency challange**: Ensuring data consistency acorss multiple independant codebases is complex and often requires different patterns like eventual consistency.
 
-17. ### 
+17. ### Can you share an example of a complex automation script you have written?
+    In my current role. I developed a complex Bash script to automate the cleanup of stael Azure App Registrations and Service Principals. the goal was to identify and report on applications that had not been used in the last 90 days to reduce attack surface.
+    How the Script Works:
+     - **Data Extraction**: It uses the Azure CLI to fetch all application registrations in the tenant.
+     - **Usage Verification**: For each application, it queries the Microsoft graph API (or we can use `az ad sp signin-activity`) to retrieve the `lastSignInDateTime`.
+     - **Owner Identification**: It specifically pulls the Owner details using az ad app owner list to ensure accountability.
+     - **Secret Expiry tracking**: The script parses the `passwordCredentials` array within the JSON output to find the nearest `endDate` highlighting secrets that are already expired or nearing expiry.
+     - **Logic and Reporting**: It calculates the date 90 days ago using the `date` command and compares it against the `lastSignInDateTime`. It compiles detils like App Name, Client ID, Owner, Secret Exipry and Last Used Date into a formatted CSV report.
+Complex Bash Elements Used:
+ - **`jq` Integration**: To parse deeply nested JSON arrays like secrets and Owners that standard CLI output can't easily handle.
+ - **Parallel Processing**: I used background jobs or `xargs` to speed up the API calls for tenants with hundreds of applications.
+ - **Error Handling**: Implemented checks for service principal permissions to ensure the script doesn't fail silently if logs are inaccessible.
+   ##TODO: write a script for above question using chatgpt.
+
+18. ### How do you approach troubleshooting and debugging automation scripts?
+    For troubleshooting and debugging I follow systematic approach:
+ - **Analyze the Failure Context**: Start by reviewing execution logs, stack traces and error messages to pinpoint exactly where and why the script failed.
+ - **Classify the Failure**: Determine if it is a 'True Failure' like an actual bug in application or 'False Failure' like issue with script, environment or test data.
+ - **Reporduce the Issue**:
+   - *Manual Reproduction*: Attempt to perform the same steps manually in same environment to see if the issue is automation-specific or a genuine application bug.
+   - *Isolated Execution*: Run only the failing test case or specific stpes to rule out dependencies or 'flaky' behavior caused by pevious tests.
+- **Isolate the Root Cause**:
+   - *Synchronization issues*: Check for timing problems. Use explicit waits instead of static sleeps to handle dynamic loading.
+   - *Test Data & Environment*: Ensure the environment is stable and the test data like credentials, URLs hasn't expired or changed.
+- **Use Debugging Tools**:
+   - *Breakpoints and Stepping*: Use IDE (CursorAI, VSCode) to set breakpoints and step through the code line-by-line to inspect variable values.
+   - *Dry Runs*: For infrastructure scripts like Terraform or Ansible, use 'dry run' or 'Plan' modes to validate logic without making changes.
+- **Fix and Verify**: Once the fix is implemented, re-run the script in multiple environments to ensure it is robust and doesn't cause regressions.
+
+
+     
     
   
 
