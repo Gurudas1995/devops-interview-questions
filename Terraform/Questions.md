@@ -134,5 +134,9 @@ Both are used for configuration or bootstrap tasks. Remote provisioners require 
 35. ### How do you enable debugging logs in Terraform?
 `TF_LOG=DEBUG terraform apply`
 
+36. ### How do you manage unmanaged AWS resources in Terraform?
+    To manage unmanaged 
+    
+
 
 
