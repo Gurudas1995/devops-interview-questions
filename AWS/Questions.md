@@ -128,7 +128,44 @@
    - Enable Transfer Acceleration: Use S3 transfer acceleration for faster uploads to S3, utilizing edge locations for the upload path.
    - Leverage edge Caching: Set appropriate `Cache-Control` headers so assets are cached at edge locations, reducing requests back to source S3 bucket.
 
-26. ### 
+26. ### Which services can be integrated with a CDN (Content Delivery Netowrk)?
+    A CDN integrates with services that host, deliver, or process web content to reduce latency and improve performance. Here is a breakdown of commonly integrated services:
+ - **Static Object Storage**: Amazon S3, Azure Blob Storage, Google Cloud Storage. best for images CSS, JS.
+ - **Compute & Load Balancing**: AWS EC2, Elastic Load Balancing, or Azure VM.
+ - **API Gateways**: To accelerate API requests and reduce load on backend services.
+ - **Media Streaming Services**: AWS Elemental MediaPackage, IVS(Interactive Video Services) for secure video delivery.
+ - **Custom Origins**: On-premise servers on third-party web servers  via public IP or domain.
+ - **Security and Optimizing Services**: WAF (Web application Firewalls), DDoS protection and certficate managers for HTTPS.
+
+27. ### How do you dynamically retrieve VPC details from AWS to create an EC2 Instance using IaC, can you write the code?
+    In IaC, we dynamically retrieve VPC details using `Data Sources` in Terraform or `ImportValue/Parameters` in CloudFormation. This Allows us to reference existing infrastructure without hardcoding Ids, which is essential for environments that change or are managed by different teams. Below is the terraform code, which uses `data` block to query the AWS API.
+```
+# Retrieve the existing VPC dynamically using a tag
+data "aws_vpc" "selected_VPC"{
+  filter {
+    name = "tag:name"
+    values = ["my-prod-vpc"]
+   }
+}
+# Retrieve a subnet within that VPC
+data "aws_subnets" "VPC_subnets"{
+  filter {
+    name = "VPC-id"
+    values = [data.aws_vpc.selected_vpc.id]
+   }
+}
+# Create the EC2 instance using above retrieved ID
+resource "AWS_instance" "My_instance"{
+  ami = "ami-sc395428488934"
+  instance_type = "t2. micro"
+  subnet_id = data.aws_subnets.vpc_subnets.ids[0]
+  tags = {
+    Name = "DynamicInstance"
+   }
+}
+```
+
+    
     
    
 
