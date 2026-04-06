@@ -121,7 +121,14 @@
  - **AWS Systems Manager**: If the goal is to install software package, we can use `SSM run command` or patch Manager to execute commands on the instance without needing SSH access or public IP addresses.
 
 24. ### What is the typical latency for load balancer, and if you encounter high latency, what monitoring steps would you take?
-    
+    Typical load balancer latency is very low, often under 1ms to 20ms depending on the type (layer4 or layer7) and geographic distribution. High latency usually indicates backend bottlenecks, netwoek congestion or improper configuration. Key monitoring steps include checking backend target response time, RequestCount, healthy host counts and error logs.
+
+25. ### If your application is hosted in S3 and users are in different geographic locations, how can you reduce latency?
+   - Use Amazon Cloudfront: Configure a CloudFront distribution with your S3 bucket as the origin to serve content from edge locations worldwide.
+   - Enable Transfer Acceleration: Use S3 transfer acceleration for faster uploads to S3, utilizing edge locations for the upload path.
+   - Leverage edge Caching: Set appropriate `Cache-Control` headers so assets are cached at edge locations, reducing requests back to source S3 bucket.
+
+26. ### 
     
    
 
