@@ -74,6 +74,24 @@ Hide/Show table of contents
 
 7. ### How do you deploy an application in a kubernetes cluster?
       Deploying an application in kubernetes involves containerizing the app, pushing the image to a registry, and applying YAML manifests using `kubectl apply -f`. For complex apps, we can use Helm Charts or Kustomize for multi environements deployment. Key components of a standard application deployment is as below:
-   - **Containerization**: The application is packaged into a Docker image and pushed to container registry. e.g.
+   - **Containerization**: The application is packaged into a Docker image and pushed to container registry. e.g. Docker hub. ECR, ACR etc.
+   - **Kubernets Manifests(YAML)**:
+     - **Deploument**: Defines the container image, replicas and update strategy.
+     - **Service**: Provides networking to expose the application (internal or external)
+     - **Ingress**: Manages external access to services, typically HTTP.
+     - **Deployment Command**: `kubectl apply -f <filename.yaml>` is the standard command to create or update resources.
+     - **Helm**: Use for managing complex applications by packaging YAMLs into charts for templating and easier version control.
+
+8. ### How do you communicate with a jenkins server and a kubernetes cluster?
+   Communication between Jenkins and Kubernetes is primarily achieved using the **Jenkins Kubernetes Plugin**, which enables Jenkins to dynamically provision agents as pods within the cluster. Secure integration is managed using **kubeconfig credentials**, **Service accounts** and **Jenkinsfile Pipelines** that use `kubectl` or helm to deploy applications.
+   Key Aspects of integration:
+   - Dynamic Agents: the Jenkins Kubernetes plugin provisions temporary worker pods in kubernetes to run build jobs, which are deleted upon completion, maximizing resource efficiency.
+   - Authentication and Access: The Kubernetes API server is accessed using a `kubeconfig` file stored in Jenkins Credentials, or by assigning a service account with appropriate Role-Based Access Control permissions to the Jenkins pod.
+   - CI/CD Pipeline Workflow: A `Jenkinsfile` is used to automate the process which involves code commit which triggers jenkins job, build and Push the docker image, and deployment using `kubectl apply` or `helm upgrade` inside jenkins pipeline to update kubernetes manifests.
+   - Network Interaction: Jenkins connects to the kubernetes API server directly, while built applications use kubernetes services and ingress for deployment.
+
+9. ### Do you only update docker images in kubernetes or do you also update replicas, storage levels and CPU allocations?
+    **No**, we do not only update Docker images. A kubernetes deployment is a declarative way to manage the entire desired state of your application, and professional manitenance involves updating several key parameters to ensure stability and performance.
+   - Docker images: To
    
 
