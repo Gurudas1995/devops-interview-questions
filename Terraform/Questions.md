@@ -135,8 +135,35 @@ Both are used for configuration or bootstrap tasks. Remote provisioners require 
 `TF_LOG=DEBUG terraform apply`
 
 36. ### How do you manage unmanaged AWS resources in Terraform?
-    To manage unmanaged 
-    
+    To manage unmanaged AWS resources in Terraform, you primarily use the `terraform import` command or the modern `import` block(Terraform 1.5+).
+ - Step 1: Write an import block: specify unique AWS ID and the target address in your code.
+    ```
+    import{
+      to = aws_s3_bucket.existing_bucket
+      id = "my-unmanaged-bucket-name"
+    }
+    ```
+  - Step 2: Define the resource: Create an empty or partial aws_s3_bucket resource block.
+  - Step 3: Generate Configuration: Run `terraform plan -generate-config-out=generated.tf` to let terraform automatically write the resource arguments.
+  - Step 4: Apply: Run `terraform apply` to finalize the import into the state file.
+
+37. ### How do you pass arguments to a VPC while using the `terraform import` command?
+   To pass arguments to a VPC using the `terraform import` command, we follow a below syntax that maps an existing cloud resource to a defined block in configuration.
+   ```
+    terraform import <resource_type>.<resource_name> <resource_id>
+    e.g. terraform import aws_vpc.main vpc-id1234567
+   ```
+38. ### What are the prerequisite before importing a VPC in terraform?
+    Before importing a VPC into terraform, we must have the VPC ID, a defined resource block in our .tf file matching the existing configuration, authorized AWS credentials a configured provider and an initialized working directory.
+
+39. ### If an S3 bucket was created through Terraform but someone manually added a policy to it, how do you handle this situaion using IaC?
+  To handle a manual change to an S3 bucket policy which is know as drift, we must decide whether to revert this manual change or to keep it.
+- Identify the drift: Run `terraform plan` to compare current terraform configuration with real-world infrastrcture. Terraform will detect that the bucket policy in AWS differs from what is in state file.
+- Choose a strategy: Depending on the manual change was intentional or accidental, we can go with any one of below option
+  - Revert the Manual Change (Enforce IaC): simply run terraform apply, which destroy the manual changes.
+  - Codify the manual changes (Adopt the changes): Manually update .tf files to include chnages made in AWS console. Or run `terraform apply -refresh-only` to update your state file to match the current remote infrastructure without making any immediate changes.
+
+40. ### 
 
 
 
