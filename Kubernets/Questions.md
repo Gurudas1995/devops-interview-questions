@@ -107,5 +107,9 @@ Hide/Show table of contents
   - *New pods are scheduled*: K8s creates replacement pods on healty nodes to maintain desired state. these are fresh pods; they don't retain the state of the lost ones unless you're using persistent volumes or stateful workloads.
   - *Self-heaing in action*: so this is great example of `self-healing` capabilites; it monitors, detects, and automatically recovers from failures without manual intervention.
 
-11. ###
+11. ### What are Persistent Volumes (Pvs) and Persistent Volume Claim (PVCs)?
+    This are API objects that decouple storage provisioning from storage consumption, allowing data to persist beyound the lifecycle of a Pod. If a Pod crashes or is rescheduled to a differnet node, the data remains safe on the PV, whereas `emptyDir` or standard volume data is lost.Developers don't need to know the specific storage backend, they only need to know how much storage they need. allows for easy scalling and portability of stateful applications.
+- **Persistent Volume**: A PV is a Piece of storage in the cluster that has been provisioned by an `admin` or dynamically provisioned using storage classes. It is a resource in the cluster, just like a node is a cluster resource. PVs have a lifecycle independant of any individual pod that uses them. It contains the actual storage implementation details such as NFS or cloud specific storage like AWS EBS, Azure Disk, GCE PD.
+- **Persistent Volume Claim (PVC)**: A PVC is a request for storage by a user or developer. Similar to how pods consume node resources (CPU/memory), PVCs consume PV resources. It allows user to request specific size and access modes like `ReadWriteOnce`, `ReadWriteMany`. When a PVC is created, Kubernetes searches for a matching PV and binds them together in a 1:1 mapping.
+    
 
