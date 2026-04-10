@@ -92,6 +92,20 @@ Hide/Show table of contents
 
 9. ### Do you only update docker images in kubernetes or do you also update replicas, storage levels and CPU allocations?
     **No**, we do not only update Docker images. A kubernetes deployment is a declarative way to manage the entire desired state of your application, and professional manitenance involves updating several key parameters to ensure stability and performance.
-   - Docker images: To
-   
+   - Key resources updated in kubernetes:
+     - **Container images**: Changing the image tag is the most common way to roll out new application code or security pathces.
+     - **Replics**: We frequently update the number of replicas to handle changes in traffic. This is done manually via `kubectl scale` or automatically through a HPA.
+     - **CPU and Memory Allocations**: We must update resource `requests` and `limits` to prevent performance issues like CPU throttling or OOMkilled. Recent version like v1.27+ even support `in-place resizing` allowing you to update these without restarting the container.
+     - **Storage Levels**: Storage requirements can be updated by expanding persistent volume claims (PVCs) if the underling storage class supports dynamic expansion.
+     - **Configurations & Secrets**: We also update ConfigMaps and Secrets to change envirponment variables or application settings without rebuilding the docker image.
+    
+10. ### A node fails. What happnes to the pods managed by a deployment, and how does Kubernetes recover them?
+  When a node fails in a K8s cluster, 
+  - *node becomes NotReady*: The Kubelet on the node stops sending heartbeats to the control plane. After a default timeout (typically 5 min), the node status changes to NotReady.
+  - *Pods are considered lost*: K8s automatically marks the Pods running on the failed node as `unavailable` or `unknown`. These Pods are not immediately deleted but are considerd non-functional.
+  - *Deployment Ensure desired state*: The deployment controller detects that the number of available pods is below the desired replica count.
+  - *New pods are scheduled*: K8s creates replacement pods on healty nodes to maintain desired state. these are fresh pods; they don't retain the state of the lost ones unless you're using persistent volumes or stateful workloads.
+  - *Self-heaing in action*: so this is great example of `self-healing` capabilites; it monitors, detects, and automatically recovers from failures without manual intervention.
+
+11. ###
 
