@@ -139,5 +139,9 @@ Kubernetes networking is a flat, cluster-wide system ensuring all pods can commu
   - **RoleBinding and ClusterRoleBinding**: Assigns roles to specific subjects like users, groups or service accounts. A `RoleBinding` grants access within a specific namespace; a `ClusterRoleBinding` grants access cluster-wide.
 Some Built-in roles are **Cluster-admin** (Superuser), **Admin**(Namespace admin), **edit**(read/write) and **View**(read-only).
 
-1. ### 
+15. ### How does Kubernetes autoscaling work?
+    - **Types of Autoscaling**:
+      - **Horizontal Pod Autoscaler(HPA)**: Scales the number of pod replicas in a Deployment. replicaSet or StateFulSet based on CPU/ Memory usage or custom metrics. HPA runs as control loop (15s default interval). It fetches metrics from the **Metrics Server**, compares current utilization against a target, and calculates the necessary replica count. If 5 pods are at 75% CPU and the target is 50%, HPA increases the pod count.
+      - **Vertical Pod Autoscaler(VPA)**: Adjusts the resource requests and limits (CPU and memory) of a container in a pod, making pods larger or smaller rather than adding more. VPA has a Recommender (monitors usage) and un Updater (terminates pods to update their resource requests). VPA right-sizes pods based on actual usage.
+      -  **Cluster Autoscaler (CA)**: Scales the number of nodes in the cluster. It adds nodes when pods cannot be scheduled due to insufficient capacity and removes nodes when they are underutilized.
     
