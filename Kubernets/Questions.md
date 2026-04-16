@@ -111,5 +111,33 @@ Hide/Show table of contents
     This are API objects that decouple storage provisioning from storage consumption, allowing data to persist beyound the lifecycle of a Pod. If a Pod crashes or is rescheduled to a differnet node, the data remains safe on the PV, whereas `emptyDir` or standard volume data is lost.Developers don't need to know the specific storage backend, they only need to know how much storage they need. allows for easy scalling and portability of stateful applications.
 - **Persistent Volume**: A PV is a Piece of storage in the cluster that has been provisioned by an `admin` or dynamically provisioned using storage classes. It is a resource in the cluster, just like a node is a cluster resource. PVs have a lifecycle independant of any individual pod that uses them. It contains the actual storage implementation details such as NFS or cloud specific storage like AWS EBS, Azure Disk, GCE PD.
 - **Persistent Volume Claim (PVC)**: A PVC is a request for storage by a user or developer. Similar to how pods consume node resources (CPU/memory), PVCs consume PV resources. It allows user to request specific size and access modes like `ReadWriteOnce`, `ReadWriteMany`. When a PVC is created, Kubernetes searches for a matching PV and binds them together in a 1:1 mapping.
-    
 
+12. ### What are init containers and when should we use them?
+    Init containers are specialized containers that run and complete their tasks before the main application containers start within a Pod. They are designed specifically for initialization, configuration and setup, ensuring the environment is fully prepared before the primary application starts running.
+- **Key Characteristics**
+  - Run to completion: init containers must exit with success code 0.
+  - Sequential execution: multiple init container run one by one in the order they defined.
+  - Sequential Startup Block: if init container fails, K8s restarts it unitil it succeeds unless `restartPolicy` is set to `Never`.
+  - Shared Volume: They can use shared volumes `emptyDir` to share data with the app container.
+- Example: Uses `busybox` image to wait for `mysql` service to be ready and creates a shared config file.
+
+13. ###  What is Kubernetes networking and how does it work?
+Kubernetes networking is a flat, cluster-wide system ensuring all pods can communicate with each other without NAT. It works through a IP-per-pod-model, where every pod receives a unique IP, and networking plugins (CNI) facilitate between pods, nodes and external services.
+- *IP-per-pod Model*: Every pod gets its own IP address, allowing contianers within a pod to share the same network namespace and IP.
+- *Container Network Interface(CNI)*: Plugins like callico, flanner are used to configure the network, providing connectivity across nodes.
+- *Service Discovery and Load Balancing*: Kubernetes Services provide stable Ips and DNS names for sets of pods, load-balancing traffic among them.
+- *Ingress-Controllers*: Ingress handles external access to services, directing HTTP/HTTPS traffic to internal services using routing rules.
+-*Pod Communication*:
+  - *Pod-to-Pod*: Direct IP communication or via CNI (for cross node)
+  - *Pod-to-Service*: Traffic sent to a stable ClusterIP, Which load-balances to backing pods.
+  - *External-to-Pod*: Via NodePort, LoadBalancer or Ingress.
+
+14. ### What is Role-Based-Access-Control (RBAC) in Kubernetes?
+    It is a security mechanism that regulates access to the API server based on roles assigned to users, groups or service accounts. It controls `who` can perform `what` actions on `which` resources within a specific namespace or the entire cluster.
+- **Key Components**:
+  - **Role and ClusterRole**: Defines permissions like what actions are allowed on which resources. A `Role` is namespaced, while `ClusterRole` is cluster wide.
+  - **RoleBinding and ClusterRoleBinding**: Assigns roles to specific subjects like users, groups or service accounts. A `RoleBinding` grants access within a specific namespace; a `ClusterRoleBinding` grants access cluster-wide.
+Some Built-in roles are **Cluster-admin** (Superuser), **Admin**(Namespace admin), **edit**(read/write) and **View**(read-only).
+
+1. ### 
+    
