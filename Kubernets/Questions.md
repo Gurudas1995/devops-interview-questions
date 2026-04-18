@@ -143,5 +143,17 @@ Some Built-in roles are **Cluster-admin** (Superuser), **Admin**(Namespace admin
     - **Types of Autoscaling**:
       - **Horizontal Pod Autoscaler(HPA)**: Scales the number of pod replicas in a Deployment. replicaSet or StateFulSet based on CPU/ Memory usage or custom metrics. HPA runs as control loop (15s default interval). It fetches metrics from the **Metrics Server**, compares current utilization against a target, and calculates the necessary replica count. If 5 pods are at 75% CPU and the target is 50%, HPA increases the pod count.
       - **Vertical Pod Autoscaler(VPA)**: Adjusts the resource requests and limits (CPU and memory) of a container in a pod, making pods larger or smaller rather than adding more. VPA has a Recommender (monitors usage) and un Updater (terminates pods to update their resource requests). VPA right-sizes pods based on actual usage.
-      -  **Cluster Autoscaler (CA)**: Scales the number of nodes in the cluster. It adds nodes when pods cannot be scheduled due to insufficient capacity and removes nodes when they are underutilized.
+      -  **Cluster Autoscaler (CA)**: Scales the number of nodes in the cluster. It adds nodes when pods cannot be scheduled due to insufficient capacity and removes nodes when they are underutilized. It works with cloud provider APIs like AWS autoscaling groups, Azure VMSS or GKE to provision or remove infrastructure.
+     
+16. ### What is difference between a Pod and Container in Kubernetes?
+    - Container - is a single isolated application process unit.
+    - Pod - is a smallest deployable unit in kubernetes, a higher abstraction that acts as logical host for one or more containers that are tightly coupled and share the same network namespaces and storage volumes.
+
+17. ### How does kubernetes handle service discovery and load balancing?
+    Load balancning and service discovery primarily handled through a resoruce called **service**, which provides a stable network endpoint for a dynamic set of ephemeral pods.
+    - **Service Discovery: CoreDNS**: Every service created in the cluster is automatically assigned a DNS name (e.g. `my-service.namespace.svc.cluster.local`). Pods can reach each other using this human-readable names instead of IPs.
+    - **Load Balancing:Kube-proxy**: The Kube-proxy daemon running on every node manages traffic routing. it uses either `iptables` or `IPVS` to intercept traffic sent to a service's virtual IP and distribute it across healthy backend pods, typically using a round-robin algorithm.
+   
+18. ### 
+      
     
