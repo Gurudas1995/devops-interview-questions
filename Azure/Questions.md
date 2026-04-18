@@ -260,6 +260,22 @@
 67. ### How do you handle high CPU alerts on Web app?
     Use application insight to find the code/request causing the spike. Set up Azure monitor alert rule on the app service plans CPU metric. Trigger an action group to send alert. For auto healing use Azure automation runbook or logic apps triggered by the action group to scale out or restart app.
 
-68. ### 
+68. ### What is Azure Kubernetes service (AKS)?
+    AKS is fully managed container orchestration service that simplifies the deployment, management and scaling of containerized applications using kubernetes. As hosted kubernetes service Azure handles critical tasks like health monitoring, mainatainance and master node management so we only manage and maintain the worker nodes.
+
+69. ### What are key benefits of using AKS?
+    Key benefits include Managed control plane, automatice upgrades and patching, self-healing, auto-scaling, virtual nodes, Azure AD integration, Network security, compliance, free control plane, integration with populare development tool such as Azure devops, jenkins, Helm etc.
+- Virtual node: Use virtual node (based on ACI) to spin up pods in seconds without managing VMs for temporary bursts in traffic.
+
+70. ### Expalain Architecture of an AKS cluster.
+    AKS architecture is designed to simplify container orchestration by providing a managed control plane and customer managed worker nodes.The architecture consist of two main components:
+    - **Control Plane Managed by Azure**: Azure automatically creates and manages componenets of control plane such as API server, etcd, schedular, controller manager, so we do not pay for them.
+    - **Node pool (Worker node) managed by user**: Worker nodes are Azure VMs where our application containers (pods) run. They organized into Node pools.
+       - System Node Pool: Hosts critical system services, such as CoreDNS, metrics-server and the Konnectivty agent.
+       - User Node Pool: Dedicated to running our application workloads and ingress controllers. Each node runs the Kubelet and container runtime.
+    - **Key Architectural Concepts**:
+      - **Managed Identity**: AKS uses a managed identity to interact with other Azure resources like ACR, CICD piplines etc..
+      - **Resource Groups**: An AKS cluster creates two resource groups: one for the cluster itself and one managed group (`MC_....`) that contains the worker VMs, Vnet, and storage.
+      - **Production setup**: For production it is best practice to seprate system and user node pools, use private endpoints for the API server, and enable Azure policy. 
     
 
