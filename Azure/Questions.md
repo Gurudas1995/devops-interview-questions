@@ -276,6 +276,35 @@
     - **Key Architectural Concepts**:
       - **Managed Identity**: AKS uses a managed identity to interact with other Azure resources like ACR, CICD piplines etc..
       - **Resource Groups**: An AKS cluster creates two resource groups: one for the cluster itself and one managed group (`MC_....`) that contains the worker VMs, Vnet, and storage.
-      - **Production setup**: For production it is best practice to seprate system and user node pools, use private endpoints for the API server, and enable Azure policy. 
-    
+      - **Production setup**: For production it is best practice to seprate system and user node pools, use private endpoints for the API server, and enable Azure policy.
+
+71. ### How does AKS handles high availabilty and fault tolerance?
+    AKS handles high availability (HA) and fault tolerance throuugh a combination of managed control plane redundancy, Availability zones, node auto-repair and cluster autoscaling.
+- **Control Plane HA**
+  - **Managed Control Plane**: Azure manages K8s master nodes, ensuring   they are highly available and automatically upgraded, removing the      burdon from user.
+  - **Multi-Master/Zone Distribution**: When availability zones are       enabled, the AKS control plane components are automatically spread      across three seprate zones within an Azure region, preventing a zone    outage from taking down the cluster management.
+- **Node level Fault Tolerance**:
+  - **Azs**: Aks Allows deploying node pools across multiple physical data centers (zones) within an Azure region.
+  - **VMSS**: AKS worker are built on VMSS, which automatically distributes nodes across fault domains and update domains to minimize downtime during maintenance or hardware failures.
+  - **Node Auto-repair**: AKS continously monitors node health, if a node becomes unhealthy, AKS automatically attempts to reboot, reimage or redeploy the node to restore it to a healthy state.
+- **Application level HA**:
+  - **Replication and Self-Healing**: Kubernetes ReplicaSets ensure that the desired number of pod replicas are running. If a pod fails, it is automatically recreated.
+  - **Pod Disruption Budgets (PDBs)**: PDBs can be used to ensure that a minimum no. of pods remain available during voluntary disruptions, such as node upgrade.
+  - **Probes(Liveness/Readiness)**: Liveness Probes restart hung containers, while readiness probes ensure traffic is only routed to pods that are ready to accept it.
+  - **HPA**: HPA automatically adjusts the number of pods based on CPU or memory usage to handle traffic surges.
+- **Regional and Multi-cluster Resilirnce**:
+  - **Azure Frontdoor/Traffic Manager**: For disaster recovery against a full region outage, AKS workloads can be deployed across multiple regions and fronted by global load balancers.
+  - **Geo-Replication (ACR)**: Azure Container Registry supports feo-replication, ensuring images are available in different regions even if one region is down.
+ 
+72. ### How do you deploy and application to AKS?
+    Core Steps to deploy an application to AKS:
+    - **Containerize the Application**: Write a `dockerfile`, build the image and test it locally.
+    - **Push image to repository**: Push the container image to Azure Container Registry (ACR) or docker hub.
+    - **Setup AKS Cluster**: Create the AKS cluster using Azure CLI or terraform.
+    - **Connect to Cluster**: Use `az aks get-credentials --resource-group <RG> --name <AKS>` to configure `kubectl` locally.
+    - **Create Manifests**: Define kubernetes yaml files like deployment.yaml, service.yaml sepcifying the container image, replicas and ports.
+    - **Deploy Application**: Run `kubectl apply -f <filename>.yaml` to deploy.
+    - **Verify Deployment**: use `kubectl get pods` and `kubectl get service` to check status and external IP.
+Alternatively we can use Azure DevOps pipelines to automate above steps and Helm charts for managing complex application deployments.
+        
 
