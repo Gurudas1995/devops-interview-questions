@@ -306,5 +306,34 @@
     - **Deploy Application**: Run `kubectl apply -f <filename>.yaml` to deploy.
     - **Verify Deployment**: use `kubectl get pods` and `kubectl get service` to check status and external IP.
 Alternatively we can use Azure DevOps pipelines to automate above steps and Helm charts for managing complex application deployments.
+
+73. ### How can we monitor our AKS deployment?
+    Monitoring an AKS deployment is best achieved through a multi-layered approach that covers infrastructure metrics, container logs, and application performance. The primary and recommended method is using **Azure Monitor for container (container Insights)**, complemented by open source tools like Prometheus and Grafana for detailed metrics.
+- **Azure Monitor for Container Insights**: It Collects memory and processor metrics from nodes, controllers and containers, providing insights into CPU/Memory utilization, restart counts, and overall cluster health. It can be enable during cluster creation, or afterward navigating to AKS clsuter, enabling `insights` ubder the monitoring section.
+- **Application Insights**: Application insights utilized to monitor the application running inside the containers, metrics collected such as `responsetime`, `failedrequests`, `dependancies`.
+
+74. ### How does networking work with AKS?
+    - **Core Architectural Concepts**:
+      - **Virtual Network Integration**: AKS nodes are deployed into an Azure VNet, receiving IPs from a specific subnet.
+      - **Kube-proxy**: Runs on every node, maintaining network rules (IP tables or IPVS) to allow network communication to pods and services.
+      - **CoreDNS**: Runs in `kube-system` for internal service discovery (DNS resolution).
+      - **Network Policies**: Used to control traffic flow between pods (allow/deny rules based on lables/namespaces).
+    - **Networking Models**
+      - **Azure CNI**: Every pod gets a direct IP address from the Azure VNet subnet. Pods can be directly reached from other VNets or on-premises networks, but this requires large IP address spaces.
+      - **Kubenet (basic)**: Nodes get IPs from the Azure VNet, but pods receive IPs from a logically seprate address space (overaly). It conserves VNet IP addresses, but Pods are not directly reachable from outside Without NAT.
+      - **Azure CNI Overlay**: This is an hybrid apporach where nodes get VNet IPs, but pods get overlay IPs, which combines the benefits of CNI management with IP conservation.
+    - **Ingress and Egress**:
+        - Ingress: Usually handled by and Ingress Controller or an Azure Application Gateway Ingress Controller to route HTTP/HTTPS traffic to services, often integrated with Azure Load Balancer.
+        - Egress: AKS nodes, by default use Azure Load Balancer for outbound connectivity. For more complx, scalbale egrss, Azure NAT Gateway is recommended.
+
+75. ### How do we secure an AKS cluster?
+    Securing an AKS cluster requires a multi-layered, `defense-in-depth` approach focusing on identity, networking and infrastructure, adhering to the principle of least privilege.
+ - **Identity and Access**: Integration of Microsoft Entra ID for RBAC and using managed identites for service-to-service authentication, avoiding hardcoded credentials.
+ - **Networking**: Deploy a private AKS cluster to restrict API server access and use Network Policies to restrict pod-to-pod traffic.
+ - **Secrets Management**: Use the Azure Key Vault Provider for Secrets Store CSI Driver to mount secrets securely, rather than using Kubernetes secrets.
+ - **Workload Security**: Scan container images for vulnerabilities using Microsoft Defender for Containers and enforce security policies using Azure Policy or OPA
+ - **Node Security**: Regularly upgrade the cluster using auto-upgrades and harden nodes with minimal privileges and security OS updates.
+    
+
         
 
